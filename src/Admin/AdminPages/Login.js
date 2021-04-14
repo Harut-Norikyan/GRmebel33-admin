@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
-import { login } from "../store/actions/users";
+import { login } from "../../store/actions/users";
 
 class Login extends Component {
   state = {
@@ -24,10 +24,10 @@ class Login extends Component {
 
   render() {
     if (localStorage.getItem("token")) {
-      return <Redirect to="/home" />
+      return <Redirect to="/gr-admin/home" />
     }
     return (
-      <div>
+      <div className="auth">
         <form onSubmit={this.submit}>
           <div className="segment">
             <h1>Вход</h1>

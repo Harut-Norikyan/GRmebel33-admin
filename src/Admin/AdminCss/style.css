@@ -18,9 +18,9 @@ button {
 }
 div,
 p {
-  color: #BABECC;
+  color: #4e4e4e;
 }
-form {
+.auth form {
   padding: 16px;
   width: 320px;
   margin: 0 auto;
@@ -46,7 +46,7 @@ label {
 }
 .authInput {
   margin-right: 16px/2;
-  box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
+  box-shadow: inset 2px 2px 5px #4e4e4e, inset -5px -5px 10px #FFF;
   width: 100%;
   box-sizing: border-box;
   transition: all 0.2s ease-in-out;
@@ -54,21 +54,21 @@ label {
   -webkit-appearance: none;
 }
 .authInput:focus {
-  box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+  box-shadow: inset 1px 1px 2px #4e4e4e, inset -1px -1px 2px #FFF;
 }
 .authButton {
   color: #61677C;
   font-weight: bold;
-  box-shadow: -5px -5px 20px #FFF, 5px 5px 20px #BABECC;
+  box-shadow: -5px -5px 20px #FFF, 5px 5px 20px #4e4e4e;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
   font-weight: 600;
 }
 .authButton:hover {
-  box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #BABECC;
+  box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #4e4e4e;
 }
 .authButton:active {
-  box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+  box-shadow: inset 1px 1px 2px #4e4e4e, inset -1px -1px 2px #FFF;
 }
 .authButton .icon {
   margin-right: 16px/2;
@@ -92,6 +92,7 @@ label {
   flex-flow: column;
   align-items: center;
   padding-top: 30px;
+  box-shadow: 10px 0 16px -8px #000;
 }
 .container-left .img-block {
   height: 100px;
@@ -101,6 +102,7 @@ label {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 10px;
 }
 .container-left .img-block p {
   color: #000;
@@ -112,9 +114,70 @@ label {
 .line {
   width: 80%;
   height: 1px;
-  background-color: #BABECC;
+  background-color: #4e4e4e;
   margin: 10px 0;
 }
 .errorText {
   color: red;
+}
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 500px;
+}
+#customers td,
+#customers th {
+  border: 1px solid #000000;
+  padding: 8px;
+}
+#customers tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+#customers tr:hover {
+  background-color: #dbd7d7;
+}
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+.center {
+  cursor: pointer;
+  text-align: center;
+}
+.icon {
+  font-size: 20px;
+}
+.icon:hover {
+  transform: scale(1.1);
+}
+.red {
+  color: red;
+}
+.blue {
+  color: blue;
+}
+.react-confirm-alert {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid;
+  text-align: center;
+  padding: 40px 20px 10px;
+  border-radius: 10px;
+  z-index: 1;
+}
+.custom-ui p {
+  font-size: 22px;
+}
+.custom-ui button {
+  padding: 10px 25px;
+  margin: 30px 10px;
+  cursor: pointer;
+}
+.right-site-bar {
+  width: 100%;
 }

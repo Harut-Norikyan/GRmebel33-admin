@@ -9,7 +9,7 @@ import reportWebVitals from './reportWebVitals';
 import reducer from './store/reducers';
 import watchers from './store/sagas';
 
-import "./Css/style.css";
+import "./Admin/AdminCss/style.css";
 import 'react-notifications/lib/notifications.css';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

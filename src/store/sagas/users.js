@@ -1,4 +1,4 @@
-import Api from "../../Api";
+import Api from "../../ApiService/AdminApi";
 import { takeLatest, put, call } from 'redux-saga/effects';
 
 import {

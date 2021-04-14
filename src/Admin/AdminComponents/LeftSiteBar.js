@@ -16,7 +16,7 @@ class LeftSiteBar extends Component {
   logOut = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    this.props.history.push("/")
+    this.props.history.push("/gr-admin")
   }
 
   render() {
@@ -32,15 +32,15 @@ class LeftSiteBar extends Component {
           <p>{this.ucFirst(user.firstName)} {this.ucFirst(user.lastName)}</p>
         </span>
         <div className="line" />
-        <Link to="/product">
-          Add Product
-         </Link>
+        <Link to="/gr-admin/product">Добавить продукт</Link>
         <div className="line" />
-        <Link to="/all-products">
-          All Products
-         </Link>
+        <Link to="/gr-admin/all-products">Продукты</Link>
         <div className="line" />
-        <button onClick={this.logOut}>Log Out</button>
+        <Link to="/gr-admin/categories">Категории</Link>
+        <div className="line" />
+        <Link to="/gr-admin/about-us">О нас</Link>
+        <div className="line" />
+        <button onClick={this.logOut}>Выход</button>
       </div>
     );
   }

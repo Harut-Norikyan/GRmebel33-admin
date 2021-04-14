@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
-import AlertService from '../Services/AlertService';
-import { registration } from "../store/actions/users"
+import AlertService from '../../Services/AlertService';
+import { registration } from "../../store/actions/users"
 
 class Registration extends Component {
 
@@ -29,10 +29,10 @@ class Registration extends Component {
   render() {
     if (this.props.user) {
       AlertService.alert("success", "Пользователь успешно добавлен");
-      return <Redirect to="/home" />
+      return <Redirect to="/gr-admin/home" />
     }
     return (
-      <div>
+      <div className="auth">
         <form onSubmit={this.submit}>
           <div className="segment">
             <h1>Регистрация</h1>

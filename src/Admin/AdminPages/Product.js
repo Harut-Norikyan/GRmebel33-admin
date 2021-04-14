@@ -22,13 +22,34 @@ class Product extends Component {
   }
 
   onChangeFile = (event) => {
-    console.log(URL.createObjectURL(event.target.files[0]), "img 1");
     const { images } = this.state;
 
     this.setState({
-      images: [...images, URL.createObjectURL(event.target.files[0])]
+      images: [...images, event.target.files[0]]
     })
+
+    // this.readFile(event.target.files[0],['jpeg', 'png', 'jpg']).then(image=>{
+    //   this.setState({
+    //     img: image
+    //   })
+    // })
   }
+
+ readFile(file, validFileTypes = null) {
+    return new Promise((resolve, reject) => {
+      let reader = new FileReader();
+      const fileName = file.name;
+      const lastDotIndex = fileName.lastIndexOf('.');
+      const fileExtention = lastDotIndex !== -1 ? fileName.substring(lastDotIndex + 1).toLowerCase() : ' ';
+      const isValid = validFileTypes.find(data => data === fileExtention);
+      !isValid && reject(true);
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        resolve(reader.result);
+      }
+    });
+  }
+
 
   onSubmit = (event) => {
     event.preventDefault();
@@ -95,17 +116,21 @@ class Product extends Component {
             {/* {
               img ?
                 <>
-                  <img className="product-img" src={img} alt="/" />
+                  <img className="product-img" src={img} alt="/" multiple/>
                 </>
                 : null
             } */}
             {
               images && images.map(img => {
-                console.log(img);
-                // <img className="product-img" src={img} alt="/" />
+                console.log(this.readFile(img, ['jpeg', 'png', 'jpg']));
+                this.readFile(img, ['jpeg', 'png', 'jpg']).then(image=>{
+                  console.log(image);
+                  // <img className="product-img" multiple src={image}/>
+                })
+                // <img className="product-img" src={this.readFile(img, ['jpeg', 'png', 'jpg'])} alt="/" multiple/>
               })
             }
-            
+
           </div>
           <button type="submit">Send</button>
         </form>

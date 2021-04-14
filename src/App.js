@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { NotificationContainer } from 'react-notifications';
-import Routing from './Routing';
+import { BrowserRouter, Redirect } from 'react-router-dom';
+import { withRouter } from "react-router";
+import Routing from './Routing/Routing';
 
 class App extends Component {
   render() {
     return (
-      <div>
+      <BrowserRouter>
         <Routing />
         <NotificationContainer />
-      </div>
+        {/* <Redirect from="/" to="/" /> */}
+      </BrowserRouter>
     );
   }
 }
-
 export default App;

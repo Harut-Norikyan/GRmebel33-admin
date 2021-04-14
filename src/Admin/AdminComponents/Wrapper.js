@@ -10,7 +10,9 @@ class Wrapper extends Component {
     return (
       <div className="container">
         <LeftSiteBar />
-        {this.props.children}
+        <div className='right-site-bar'>
+          {this.props.children}
+        </div>
       </div>
     );
   }

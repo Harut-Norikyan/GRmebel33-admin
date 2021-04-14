@@ -4,7 +4,7 @@ import { confirmAlert } from 'react-confirm-alert';
 class AlertService {
   static alert = (type, message) => {
     const respMessage = typeof message === 'object' ? message.message : message;
-    if(!respMessage) { return; }
+    if (!respMessage) { return; }
     switch (type) {
       case 'info':
         NotificationManager.info('');
