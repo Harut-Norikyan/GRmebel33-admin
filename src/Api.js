@@ -14,7 +14,7 @@ api.interceptors.request.use((config) => {
   return config;
 }, (err) => Promise.reject(err));
 
-class AdminApi {
+class Api {
   static url = API_URL;
 
   //// Auth
@@ -53,6 +53,20 @@ class AdminApi {
     return api.put('/aboutUs/update-about-us-description', { description, descId });
   }
 
+  // Product
+  static addProduct(data) {
+    const formData = serialize(
+      data,
+    );
+    debugger
+    return api.post('/product/add-product', formData);
+  }
+  static getProducts() {
+    return api.get('/product/get-products');
+  }
+  static getProductById(id) {
+    return api.get(`/product/get-product-by-id/${id}`);
+  }
 }
 
-export default AdminApi;
+export default Api;

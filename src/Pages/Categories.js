@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Api from '../../ApiService/AdminApi';
-import AlertService from '../../Services/AlertService';
+import Api from '../Api';
+import AlertService from '../Services/AlertService';
 import { RiDeleteBin2Fill } from "react-icons/ri";
 import { MdUpdate } from "react-icons/md";
 
@@ -75,6 +75,7 @@ class Categories extends Component {
     const { categories } = this.state;
     return (
       <div className='content'>
+        <h2>Категории</h2>
         <form onSubmit={this.onSubmit}>
           <input
             type="text"
@@ -83,7 +84,7 @@ class Categories extends Component {
             onChange={this.onChange}
           />
           <button>
-            Add Category
+            Добавить категорию
           </button>
           <table id="customers">
             <thead>

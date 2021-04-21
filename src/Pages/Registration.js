@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
-import AlertService from '../../Services/AlertService';
-import { registration } from "../../store/actions/users"
+import AlertService from '../Services/AlertService';
+import { registration } from "../store/actions/users"
 
 class Registration extends Component {
 

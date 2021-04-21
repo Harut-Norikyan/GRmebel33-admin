@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Api from '../../ApiService/AdminApi';
-import AlertService from '../../Services/AlertService';
+import Api from '../Api';
+import AlertService from '../Services/AlertService';
 
 class AboutUs extends Component {
 

@@ -79,7 +79,10 @@ label {
   color: #AE1100;
 }
 .product-image-block .product-img {
-  width: 100px;
+  width: auto;
+  height: 120px;
+  margin: 5px;
+  border: 2px solid;
 }
 .container {
   display: flex;
@@ -93,6 +96,7 @@ label {
   align-items: center;
   padding-top: 30px;
   box-shadow: 10px 0 16px -8px #000;
+  position: fixed;
 }
 .container-left .img-block {
   height: 100px;
@@ -123,7 +127,6 @@ label {
 #customers {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 500px;
 }
 #customers td,
 #customers th {
@@ -180,4 +183,37 @@ label {
 }
 .right-site-bar {
   width: 100%;
+  margin-left: 230px;
+}
+.product-form {
+  display: flex;
+  flex-flow: column;
+  margin: 50px;
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 10px;
+  align-items: baseline;
+}
+.product-form input,
+.product-form textarea {
+  margin: 5px;
+  height: 40px;
+  padding: 5px;
+}
+.product-form .css-2b097c-container {
+  width: 80%;
+  margin: 5px;
+}
+.product-form button {
+  padding: 10px 20px;
+  margin: 5px;
+}
+.product-form label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+  margin-left: 5px;
+}
+.product-form label input {
+  width: 17px;
 }
