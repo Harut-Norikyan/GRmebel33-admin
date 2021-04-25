@@ -15,6 +15,12 @@ html {
   background-color: @color-bg;
 }
 
+input,
+textarea,
+button {
+  outline: none !important;
+}
+
 body,
 p,
 input,
@@ -103,13 +109,13 @@ label {
 .product-image-block {
   .product-img {
     width: auto;
-    height: 120px;
+    height: 150px;
     margin: 5px;
     border: 2px solid;
   }
 }
 
-.container {
+.global-container {
   display: flex;
 }
 
@@ -123,7 +129,8 @@ label {
   padding-top: 30px;
   box-shadow: 10px 0 16px -8px #000;
   position: fixed;
-  
+  z-index: 1;
+
   .img-block {
     height: 100px;
     width: 100px;
@@ -133,10 +140,12 @@ label {
     align-items: center;
     justify-content: center;
     margin-bottom: 10px;
+    cursor: pointer;
 
     p {
       color: #000;
       font-size: 45px;
+      margin: 0;
     }
   }
 
@@ -159,6 +168,7 @@ label {
 #customers {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
+  max-width: 800px;
   // width: 500px;
 }
 
@@ -216,25 +226,28 @@ label {
   padding: 40px 20px 10px;
   border-radius: 10px;
   z-index: 1;
+  background-color: #FFF;
 }
 
-.custom-ui{
-  p{
+.custom-ui {
+  p {
     font-size: 22px;
   }
-  button{
+
+  button {
     padding: 10px 25px;
     margin: 30px 10px;
     cursor: pointer;
   }
-} 
-.right-site-bar{
+}
+
+.right-site-bar {
   width: 100%;
   margin-left: 230px;
 }
 
-.product-form{
-  // width: 700px;
+.product-form {
+  max-width: 600px;
   display: flex;
   flex-flow: column;
   margin: 50px;
@@ -242,26 +255,164 @@ label {
   border-radius: 5px;
   padding: 10px;
   align-items: baseline;
-  input, textarea{
+
+  input,
+  textarea {
     margin: 5px;
-    height: 40px;
+    // height: 40px;
     padding: 5px;
   }
-  .css-2b097c-container{
+
+  .css-2b097c-container {
     width: 80%;
     margin: 5px;
   }
-  button{
+
+  button {
     padding: 10px 20px;
     margin: 5px;
   }
-  label{
+
+  label {
     display: flex;
     align-items: center;
     margin-bottom: 0;
     margin-left: 5px;
-    input{
+
+    input {
       width: 17px;
+    }
+  }
+}
+
+.images-block {
+  border: 1px solid grey;
+  width: 98%;
+  height: 200px;
+  display: flex;
+  border-radius: 3px;
+  position: relative;
+  margin: 15px 0;
+  background-color: #fff;
+
+  .upload-img {
+    border-right: 1px solid grey;
+    width: 80px;
+    display: flex;
+    padding-right: 10px;
+
+    .labelForUpload {
+      cursor: pointer;
+    }
+  }
+
+  .product-image-block {
+    overflow-y: auto;
+    display: flex;
+    align-items: flex-end;
+
+    .global-settings {
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 2;
+      width: 25px;
+    }
+  }
+}
+
+.image-block {
+  position: relative;
+
+  .settings {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 20px;
+    cursor: pointer;
+  }
+
+}
+
+.dropdown-item {
+  width: 95%;
+}
+
+.description {
+  width: 98%;
+  height: 200px;
+}
+
+.keyWords {
+  width: 98%;
+  height: 100px;
+}
+
+#name {
+  width: 98%;
+}
+
+.about-us-block {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+
+  textarea {
+    white-space: break-spaces !important;
+  }
+
+  button {
+    margin-top: 10px;
+  }
+}
+
+.error {
+  box-shadow: 0px 0px 4px 2px red;
+  border-color: transparent;
+}
+
+.td-img {
+  max-width: 100px;
+}
+
+.td-desc {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.add-category-block {
+  display: flex;
+  flex-flow: column;
+  align-items: baseline;
+  margin: 20px 0px;
+
+  input {
+    height: 40px;
+    margin-bottom: 10px;
+    width: 400px;
+  }
+
+  label {
+    margin: 0;
+  }
+
+  .category-butttons-block {
+    display: flex;
+
+    .reset {
+      font-size: 28px;
+      color: #126ccc;
+      cursor: pointer;
+      margin-left: 40px;
+      transition: 0.2s;
+
+      &:hover {
+        transition: 0.2s;
+        transform: scale(1.1);
+      }
     }
   }
 }

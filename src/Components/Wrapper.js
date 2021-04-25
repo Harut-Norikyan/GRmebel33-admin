@@ -8,7 +8,7 @@ class Wrapper extends Component {
       return <Redirect to="/" />
     }
     return (
-      <div className="container">
+      <div className="global-container">
         <LeftSiteBar />
         <div className='right-site-bar'>
           {this.props.children}

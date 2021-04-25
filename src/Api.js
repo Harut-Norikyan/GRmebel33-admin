@@ -58,14 +58,28 @@ class Api {
     const formData = serialize(
       data,
     );
-    debugger
     return api.post('/product/add-product', formData);
+  }
+  static updateProduct(data, id) {
+    const formData = serialize(
+      data,
+    );
+    return api.put(`/product/update-product/${id}`, formData);
   }
   static getProducts() {
     return api.get('/product/get-products');
   }
   static getProductById(id) {
     return api.get(`/product/get-product-by-id/${id}`);
+  }
+  static removeProduct(id) {
+    return api.delete(`/product/remove-product/${id}`);
+  }
+  static removeProductImage(imgPath, id, images) {
+    return api.post(`/product/remove-product-image/${id}`, { imgPath, images });
+  }
+  static makeTheMain(images, id) {
+    return api.post(`/product/make-the-main/${id}`, { images, id });
   }
 }
 

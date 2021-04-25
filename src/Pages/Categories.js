@@ -3,13 +3,14 @@ import Api from '../Api';
 import AlertService from '../Services/AlertService';
 import { RiDeleteBin2Fill } from "react-icons/ri";
 import { MdUpdate } from "react-icons/md";
-
+import { BiReset } from "react-icons/bi";
 
 class Categories extends Component {
   state = {
     categoryId: null,
     categoryName: '',
-    categories: []
+    categories: [],
+    isinvalidSubmit: false,
   }
 
   componentDidMount() {
@@ -18,26 +19,6 @@ class Categories extends Component {
 
   onChange = (event) => {
     this.setState({ [event.target.name]: event.target.value })
-  }
-
-  onSubmit = (event) => {
-    event.preventDefault();
-    const { categoryName, categoryId } = this.state;
-    if (!categoryId) {
-      Api.addCategory(categoryName).then(response => {
-        const data = { ...response.data };
-        data && AlertService.alert("success", data.message);
-        this.setState({ categoryName: '' });
-        this.getCategories();
-      });
-    } else {
-      Api.updateCategory(categoryName, categoryId).then(response => {
-        const data = { ...response.data };
-        data && AlertService.alert("success", data.message);
-        this.setState({ categoryName: '', categoryId: null });
-        this.getCategories();
-      })
-    }
   }
 
   getCategoryById = (id) => {
@@ -71,21 +52,74 @@ class Categories extends Component {
     });
   }
 
+  cancelUpdate = () => {
+    this.setState({
+      categoryId: null,
+      categoryName: ''
+    })
+  }
+
+  onSubmit = (event) => {
+    event.preventDefault();
+    var { categoryName, categoryId, isinvalidSubmit } = this.state;
+    if (!categoryName) {
+      isinvalidSubmit = true;
+      this.setState({ isinvalidSubmit });
+    } else {
+      isinvalidSubmit = false;
+      this.setState({ isinvalidSubmit });
+    }
+    if (!isinvalidSubmit) {
+      if (!categoryId) {
+        Api.addCategory(categoryName).then(response => {
+          const data = { ...response.data };
+          data && AlertService.alert("success", data.message);
+          this.setState({ categoryName: '' });
+          this.getCategories();
+        });
+      } else {
+        Api.updateCategory(categoryName, categoryId).then(response => {
+          const data = { ...response.data };
+          data && AlertService.alert("success", data.message);
+          this.setState({ categoryName: '', categoryId: null });
+          this.getCategories();
+        })
+      }
+    }
+  }
+
   render() {
-    const { categories } = this.state;
+    const { categories, isinvalidSubmit, categoryName, categoryId } = this.state;
     return (
       <div className='content'>
         <h2>Категории</h2>
         <form onSubmit={this.onSubmit}>
-          <input
-            type="text"
-            name="categoryName"
-            value={this.state.categoryName}
-            onChange={this.onChange}
-          />
-          <button>
-            Добавить категорию
-          </button>
+          <div className="add-category-block">
+            <label htmlFor="categoryName">Название категории <span className="red">*</span> </label>
+            <input
+              id="categoryName"
+              type="text"
+              name="categoryName"
+              value={this.state.categoryName}
+              onChange={this.onChange}
+              placeholder="Название категории"
+              className={` ${isinvalidSubmit && !categoryName ? "error" : ""}`}
+            />
+            <div className="category-butttons-block">
+              <button type="submit" className="btn btn-outline-primary">
+                {
+                  categoryId ? "Обнавить категорию" : "Добавить категорию"
+                }
+              </button>
+              {
+                categoryId ?
+                  <div className="reset" title="Отменить обнавление данной категории" onClick={this.cancelUpdate}>
+                    <BiReset />
+                  </div>
+                  : null
+              }
+            </div>
+          </div>
           <table id="customers">
             <thead>
               <tr>

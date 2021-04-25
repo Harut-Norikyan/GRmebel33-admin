@@ -46,19 +46,21 @@ class AboutUs extends Component {
     const { descId } = this.state;
     return (
       <div>
+        <h2>О нас</h2>
         <form onSubmit={this.onSubmit}>
+          <div className="about-us-block">
           <textarea
             type="text"
             cols='50'
             rows='10'
             name="description"
+            wrap='hard'
             style={{ padding: '10px', whiteSpace: 'nowrap' }}
             value={this.state.description}
             onChange={this.onChange}
           />
-          <button>
-            {`${descId ? "update" : "create"}`}
-          </button>
+          <button type="submit" className="btn btn-outline-primary">{`${descId ? "Обнавить" : "Добавить"}`}</button>
+          </div>
         </form>
       </div>
     );
