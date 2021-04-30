@@ -4,6 +4,7 @@ import AlertService from '../Services/AlertService';
 import { RiDeleteBin2Fill } from "react-icons/ri";
 import { MdUpdate } from "react-icons/md";
 import { BiReset } from "react-icons/bi";
+import ReactPaginate from 'react-paginate';
 
 class Categories extends Component {
   state = {
@@ -11,10 +12,13 @@ class Categories extends Component {
     categoryName: '',
     categories: [],
     isinvalidSubmit: false,
+    pageCount: null,
+    currentPage: 1,
   }
 
   componentDidMount() {
-    this.getCategories()
+    const { currentPage } = this.state;
+    this.getCategories(currentPage);
   }
 
   onChange = (event) => {
@@ -45,10 +49,10 @@ class Categories extends Component {
     })
   }
 
-  getCategories = () => {
-    Api.getCategories().then(response => {
+  getCategories = (currentPage) => {
+    Api.getCategories(currentPage).then(response => {
       const data = { ...response.data };
-      this.setState({ categories: data.categories });
+      this.setState({ categories: data.categories, pageCount: data.totalPages });
     });
   }
 
@@ -57,6 +61,10 @@ class Categories extends Component {
       categoryId: null,
       categoryName: ''
     })
+  }
+
+  handlePageClick = (event) => {
+    this.getCategories(event.selected + 1)
   }
 
   onSubmit = (event) => {
@@ -89,7 +97,7 @@ class Categories extends Component {
   }
 
   render() {
-    const { categories, isinvalidSubmit, categoryName, categoryId } = this.state;
+    const { categories, isinvalidSubmit, categoryName, categoryId, pageCount } = this.state;
     return (
       <div className='content'>
         <h2>Категории</h2>
@@ -141,6 +149,24 @@ class Categories extends Component {
             </tbody>
           </table>
         </form>
+        <div className="pagination-block">
+          <ReactPaginate
+            previousLabel={"Назад"}
+            nextLabel={"Вперед"}
+            pageCount={pageCount}
+            onPageChange={this.handlePageClick}
+            breakClassName={'page-item'}
+            breakLinkClassName={'page-link'}
+            containerClassName={'pagination'}
+            pageClassName={'page-item'}
+            pageLinkClassName={'page-link'}
+            previousClassName={'page-item'}
+            previousLinkClassName={'page-link'}
+            nextClassName={'page-item'}
+            nextLinkClassName={'page-link'}
+            activeClassName={'active'}
+          />
+        </div>
       </div>
     );
   }

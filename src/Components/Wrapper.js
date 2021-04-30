@@ -5,7 +5,7 @@ import LeftSiteBar from "./LeftSiteBar";
 class Wrapper extends Component {
   render() {
     if (!localStorage.getItem("token")) {
-      return <Redirect to="/" />
+      return <Redirect to="/gr-admin" />
     }
     return (
       <div className="global-container">

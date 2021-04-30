@@ -14,6 +14,14 @@ api.interceptors.request.use((config) => {
   return config;
 }, (err) => Promise.reject(err));
 
+api.interceptors.response.use(response => response, function (error) {
+  if (error) {
+    localStorage.clear()
+    window.location.href = "/gr-admin"
+    return Promise.reject(error);
+  }
+});
+
 class Api {
   static url = API_URL;
 
@@ -32,8 +40,8 @@ class Api {
   static updateCategory(categoryName, id) {
     return api.put('/category/update-category-by-id', { categoryName, id });
   }
-  static getCategories() {
-    return api.get('/category/get-categories');
+  static getCategories(currentPage) {
+    return api.get(`/category/get-categories/${currentPage}`);
   }
   static getCategoryById(id) {
     return api.get(`/category/get-category-by-id/${id}`)
@@ -66,14 +74,14 @@ class Api {
     );
     return api.put(`/product/update-product/${id}`, formData);
   }
-  static getProducts() {
-    return api.get('/product/get-products');
+  static getProducts(currentPage) {
+    return api.get(`/product/get-products/${currentPage}`);
   }
   static getProductById(id) {
     return api.get(`/product/get-product-by-id/${id}`);
   }
-  static removeProduct(id) {
-    return api.delete(`/product/remove-product/${id}`);
+  static removeProduct(id, images) {
+    return api.post(`/product/remove-product/${id}`, { images });
   }
   static removeProductImage(imgPath, id, images) {
     return api.post(`/product/remove-product-image/${id}`, { imgPath, images });
@@ -81,6 +89,8 @@ class Api {
   static makeTheMain(images, id) {
     return api.post(`/product/make-the-main/${id}`, { images, id });
   }
+  static searchProduct(data) {
+    return api.post("/product/search", { data });
+  }
 }
-
 export default Api;

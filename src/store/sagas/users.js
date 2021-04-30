@@ -38,7 +38,7 @@ function* registration(action) {
 function* login(action) {
   try {
     const { email, password } = action.payload;
-    const user = yield call(Api.login, email, password)
+    const user = yield call(Api.login, email, password);
     yield put({
       type: LOGIN_SUCCESS,
       payload: { user },
@@ -46,7 +46,7 @@ function* login(action) {
   } catch (error) {
     yield put({
       type: LOGIN_FAIL,
-      payload : error.message
+      payload: error.message
     });
   }
 }

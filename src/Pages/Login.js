@@ -7,7 +7,8 @@ class Login extends Component {
   state = {
     email: '',
     password: '',
-    errorMessage: ''
+    errorMessage: '',
+    isinvalidSubmit: false,
   }
 
   onChange = (event) => {
@@ -19,13 +20,18 @@ class Login extends Component {
   submit = (event) => {
     event.preventDefault();
     const { email, password } = this.state;
-    this.props.login(email, password);
+    if (email && password) {
+      this.props.login(email, password);
+    } else {
+      this.setState({ isinvalidSubmit: true })
+    }
   }
 
   render() {
     if (localStorage.getItem("token")) {
       return <Redirect to="/gr-admin/home" />
     }
+    const { isinvalidSubmit, email, password } = this.state;
     return (
       <div className="auth">
         <form onSubmit={this.submit}>
@@ -34,7 +40,7 @@ class Login extends Component {
           </div>
           <label>
             <input
-              className="authInput"
+              className={`authInput ${isinvalidSubmit && !email ? "error" : ""}`}
               type="email"
               name="email"
               placeholder="Электронная почта"
@@ -43,7 +49,7 @@ class Login extends Component {
           </label>
           <label>
             <input
-              className="authInput"
+              className={`authInput ${isinvalidSubmit && !password ? "error" : ""}`}
               type="password"
               name="password"
               placeholder="Пароль"

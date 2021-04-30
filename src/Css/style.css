@@ -335,3 +335,15 @@ label {
   transition: 0.2s;
   transform: scale(1.1);
 }
+.search-block {
+  padding: 20px 0;
+}
+.search-block input {
+  margin-right: 1px;
+}
+.search-block button {
+  height: fit-content;
+}
+.pagination-block {
+  margin-top: 20px;
+}
