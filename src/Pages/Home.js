@@ -10,11 +10,12 @@ class Home extends Component {
 
   state = {
     text: "",
-    products: []
+    products: [],
+    isinvalidSubmit: false
   }
 
   onChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value })
+    this.setState({ [event.target.name]: event.target.value, isinvalidSubmit: false })
   }
 
   removeProduct = (id, product) => {
@@ -36,15 +37,19 @@ class Home extends Component {
   onSubmit = (event) => {
     event.preventDefault();
     let { text } = this.state;
-    text = text.split(" ");
-    Api.searchProduct(text).then(response => {
-      if (response?.data?.products?.length) {
-        this.setState({ products: response.data.products, text: '' });
-      } else {
-        AlertService.alert('warning', "Продукт не найден !!!");
-        this.setState({ text: '' });
-      }
-    })
+    if (!text) {
+      this.setState({ isinvalidSubmit: true });
+    } else {
+      text = text.split(" ");
+      Api.searchProduct(text).then(response => {
+        if (response?.data?.products?.length) {
+          this.setState({ products: response.data.products, text: '' });
+        } else {
+          AlertService.alert('warning', "Продукт не найден !!!");
+          this.setState({ text: '' });
+        }
+      })
+    }
   }
 
   render() {
@@ -52,15 +57,21 @@ class Home extends Component {
       return <Redirect to="/gr-admin" />
     }
 
-    const { products, text } = this.state;
+    const { products, text, isinvalidSubmit } = this.state;
 
     return (
       <div className="home-container">
         <h2>Искать продукт</h2>
         <form onSubmit={this.onSubmit}>
           <div className="d-flex col-6 search-block">
-            <input className="form-control mb-10" type="text" name="text" value={text} onChange={this.onChange} />
-            <button type="submit" className="btn btn-primary">Search</button>
+            <input
+              className={`form-control mb-10 mr-2 ${isinvalidSubmit && !text ? "error" : ""}`}
+              type="text"
+              name="text"
+              value={text}
+              onChange={this.onChange}
+            />
+            <button type="submit" className="btn btn-primary">Искать</button>
           </div>
         </form>
         <div>
