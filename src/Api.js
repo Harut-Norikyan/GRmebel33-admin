@@ -92,5 +92,8 @@ class Api {
   static searchProduct(data) {
     return api.post("/product/search", { data });
   }
+  static getProductByCategoryId(id) {
+    return api.get(`/product/get-product-by-vategory-id/${id}`);
+  }
 }
 export default Api;
