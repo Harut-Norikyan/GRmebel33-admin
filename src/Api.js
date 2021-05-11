@@ -1,7 +1,8 @@
 import axios from "axios";
 import { serialize } from 'object-to-formdata';
 
-const API_URL = 'http://localhost:4000/gr-admin';
+// const API_URL = 'http://localhost:4000/gr-admin';
+const API_URL = 'http://5.63.152.244:4000/gr-admin';
 const api = axios.create({
   baseURL: API_URL,
 });
