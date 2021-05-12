@@ -71,7 +71,7 @@ class AllProducts extends Component {
                   <td>{product.name}</td>
                   <td>
                     {
-                      <img className="td-img" src={`http://localhost:4000/${JSON.parse(product.images)[0]}`} />
+                      <img className="td-img" src={`http://5.63.152.244:4000/${JSON.parse(product.images)[0]}`} />
                     }
                   </td>
                   <td><p className="td-desc">{product.description}</p></td>
