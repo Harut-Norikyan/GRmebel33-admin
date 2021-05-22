@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 class LeftSiteBar extends Component {
 
   state = {
-    user: null || JSON.parse(localStorage.getItem("user"))
+    user: null || JSON.parse(localStorage.getItem("user")),
   }
 
   ucFirst = (str) => {
@@ -24,7 +24,7 @@ class LeftSiteBar extends Component {
   }
 
   render() {
-    const { user } = this.state;
+    const { user, token } = this.state;
     return (
       user &&
       <div className="container-left">

@@ -89,7 +89,7 @@ class Registration extends Component {
   }
 }
 
-const mapStateToProps = (state) => (console.log(state), {
+const mapStateToProps = (state) => ({
   user: state.users.user
 })
 

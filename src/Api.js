@@ -2,7 +2,6 @@ import axios from "axios";
 import { serialize } from 'object-to-formdata';
 
 const API_URL = 'http://localhost:4000/gr-admin';
-// const API_URL = 'http://5.63.152.244:4000/gr-admin';
 const api = axios.create({
   baseURL: API_URL,
 });
@@ -35,11 +34,17 @@ class Api {
   }
 
   //// Category
-  static addCategory(categoryName) {
-    return api.post('/category/add-category', { categoryName });
+  static addCategory(data) {
+    const formData = serialize(
+      data,
+    );
+    return api.post('/category/add-category', formData);
   }
-  static updateCategory(categoryName, id) {
-    return api.put('/category/update-category-by-id', { categoryName, id });
+  static updateCategory(data) {
+    const formData = serialize(
+      data,
+    );
+    return api.put('/category/update-category-by-id', formData);
   }
   static getCategories(currentPage) {
     return api.get(`/category/get-categories/${currentPage}`);

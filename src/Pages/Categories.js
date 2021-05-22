@@ -4,6 +4,8 @@ import AlertService from '../Services/AlertService';
 import { RiDeleteBin2Fill } from "react-icons/ri";
 import { MdUpdate } from "react-icons/md";
 import { BiReset } from "react-icons/bi";
+import settingsIcon from "../Images/settings (2).png";
+import cameraGrey from "../Images/camera-grey.png";
 import ReactPaginate from 'react-paginate';
 
 class Categories extends Component {
@@ -14,6 +16,8 @@ class Categories extends Component {
     isinvalidSubmit: false,
     pageCount: null,
     currentPage: 1,
+    image: '',
+    imageForDraw: '',
   }
 
   componentDidMount() {
@@ -30,7 +34,8 @@ class Categories extends Component {
       const data = { ...response.data };
       response.data && response.data.category && this.setState({
         categoryId: data.category._id,
-        categoryName: data.category.categoryName
+        categoryName: data.category.categoryName,
+        imageForDraw: data.category?.images ? JSON.parse(data.category?.images)[0] : ''
       })
     })
   }
@@ -59,7 +64,9 @@ class Categories extends Component {
   cancelUpdate = () => {
     this.setState({
       categoryId: null,
-      categoryName: ''
+      categoryName: '',
+      image: '',
+      imageForDraw: ''
     })
   }
 
@@ -67,10 +74,24 @@ class Categories extends Component {
     this.getCategories(event.selected + 1)
   }
 
+  removePhoto = () => {
+    this.setState({ image: '' });
+  }
+
+  removePhotoWithServer = () => {
+
+  }
+
+  onChangeFile = (event) => {
+    this.setState({
+      image: event.target.files[0],
+    })
+  }
+
   onSubmit = (event) => {
     event.preventDefault();
-    var { categoryName, categoryId, isinvalidSubmit } = this.state;
-    if (!categoryName) {
+    var { categoryName, categoryId, isinvalidSubmit, image, imageForDraw } = this.state;
+    if (!categoryName || !(image || imageForDraw)) {
       isinvalidSubmit = true;
       this.setState({ isinvalidSubmit });
     } else {
@@ -78,18 +99,19 @@ class Categories extends Component {
       this.setState({ isinvalidSubmit });
     }
     if (!isinvalidSubmit) {
+      var images = [image];
       if (!categoryId) {
-        Api.addCategory(categoryName).then(response => {
+        Api.addCategory({ categoryName, images }).then(response => {
           const data = { ...response.data };
           data && AlertService.alert("success", data.message);
-          this.setState({ categoryName: '' });
+          this.setState({ categoryName: '', image: '', imageForDraw: '' });
           this.getCategories();
         });
       } else {
-        Api.updateCategory(categoryName, categoryId).then(response => {
+        Api.updateCategory({ categoryName, categoryId, images, imgPath: imageForDraw }).then(response => {
           const data = { ...response.data };
           data && AlertService.alert("success", data.message);
-          this.setState({ categoryName: '', categoryId: null });
+          this.setState({ categoryName: '', categoryId: null, image: '', imageForDraw: '' });
           this.getCategories();
         })
       }
@@ -97,10 +119,10 @@ class Categories extends Component {
   }
 
   render() {
-    const { categories, isinvalidSubmit, categoryName, categoryId, pageCount } = this.state;
+    const { categories, isinvalidSubmit, categoryName, categoryId, pageCount, image, imageForDraw } = this.state;
     return (
       <div className='content'>
-        <h2>Категории</h2>
+        <h2>{categoryId ? "Обнавить категорию" : "Добавить категорию"}</h2>
         <form onSubmit={this.onSubmit}>
           <div className="add-category-block">
             <label htmlFor="categoryName">Название категории <span className="red">*</span> </label>
@@ -113,6 +135,40 @@ class Categories extends Component {
               placeholder="Название категории"
               className={` ${isinvalidSubmit && !categoryName ? "error" : ""}`}
             />
+            <hr />
+            <label htmlFor="categoryName">Фотография для категории<span className="red"> *</span> </label>
+            <div className="category-upload-block">
+              <div className={`upload-img ${isinvalidSubmit && !image ? "error" : ""}`}>
+                <input type="file" id="upload" hidden name="img" multiple onChange={this.onChangeFile} />
+                <label className="labelForUpload" htmlFor="upload">
+                  <img src={cameraGrey} alt="#"/>
+                </label>
+              </div>
+              {
+                image ?
+                  <div className='image-block'>
+                    <img className="settings" src={settingsIcon} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" alt="#"/>
+                    <div className="dropdown-menu dropdown-menu-right">
+                      <button
+                        className="dropdown-item"
+                        type="button"
+                        onClick={this.removePhoto}
+                      >
+                        Удалить фото
+                    </button>
+                    </div>
+                    <img className="category-img" src={URL.createObjectURL(image)} alt="#"/>
+                  </div>
+                  : null
+              }
+              {
+                imageForDraw && !image ?
+                  <div className='image-block'>
+                    <img className="category-img" src={imageForDraw} alt="#"/>
+                  </div>
+                  : null
+              }
+            </div>
             <div className="category-butttons-block">
               <button type="submit" className="btn btn-outline-primary">
                 {
@@ -128,27 +184,34 @@ class Categories extends Component {
               }
             </div>
           </div>
-          <table id="customers">
-            <thead>
-              <tr>
-                <th>Category name</th>
-                <th>Update</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                categories ? categories.map(category => {
-                  return <tr key={category._id}>
-                    <td>{category.categoryName}</td>
-                    <td className="center blue icon" onClick={() => this.getCategoryById(category._id)}><MdUpdate /></td>
-                    <td className="center red icon" onClick={() => this.removeCategoryById(category)}><RiDeleteBin2Fill /></td>
-                  </tr>
-                }) : null
-              }
-            </tbody>
-          </table>
+          <hr />
         </form>
+        <table id="customers">
+          <thead>
+            <tr>
+              <th>Название категории</th>
+              <th>Картинка</th>
+              <th>Обновить</th>
+              <th>Удалить</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              categories ? categories.map(category => {
+                return <tr key={category._id}>
+                  <td>{category.categoryName}</td>
+                  <td>
+                    {
+                      <img className="td-img" src={`http://localhost:4000/${JSON.parse(category.images)[0]}`} alt="#"/>
+                    }
+                  </td>
+                  <td className="center blue icon" onClick={() => this.getCategoryById(category._id)}><MdUpdate /></td>
+                  <td className="center red icon" onClick={() => this.removeCategoryById(category)}><RiDeleteBin2Fill /></td>
+                </tr>
+              }) : null
+            }
+          </tbody>
+        </table>
         <div className="pagination-block">
           <ReactPaginate
             previousLabel={"Назад"}

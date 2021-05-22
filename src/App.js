@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { NotificationContainer } from 'react-notifications';
-import { BrowserRouter, Redirect } from 'react-router-dom';
-import { withRouter } from "react-router";
+import { BrowserRouter } from 'react-router-dom';
 import Routing from './Routing/Routing';
 
 class App extends Component {
@@ -10,7 +9,6 @@ class App extends Component {
       <BrowserRouter>
         <Routing />
         <NotificationContainer />
-        {/* <Redirect from="/" to="/" /> */}
       </BrowserRouter>
     );
   }

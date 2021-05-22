@@ -86,7 +86,7 @@ class Product extends Component {
 
   selectChange = selectedOption => {
     const categoriesId = [];
-    selectedOption.map(elem => {
+    selectedOption.forEach(elem => {
       categoriesId.push(elem)
     });
     this.setState(prevState => ({
@@ -145,13 +145,8 @@ class Product extends Component {
     return sourse.map((photo, index) => {
       return (
         <div key={index} className='image-block'>
-          <img className="settings" src={settingsIcon} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
+          <img className="settings" src={settingsIcon} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" alt="#"/>
           <div className="dropdown-menu dropdown-menu-right">
-            {/* <button
-              className="dropdown-item"
-              type="button"
-              onClick={() => this.makeTheMain(index)}
-            >Сделать главным</button> */}
             <button
               className="dropdown-item"
               type="button"
@@ -260,7 +255,7 @@ class Product extends Component {
         this.setState({ isInvalidSubmit });
       }
     }
-    
+
     if (productId) {
       if (
         (!form.images.length && !imagesForDraw.length) ||
@@ -381,14 +376,14 @@ class Product extends Component {
             <div className="upload-img">
               <input type="file" id="upload" hidden name="img" multiple onChange={this.onChangeFile} />
               <label className="labelForUpload" htmlFor="upload">
-                <img src={cameraGrey} />
+                <img src={cameraGrey} alt="#"/>
               </label>
             </div>
             <div className="product-image-block">
               {
                 imagesBlobArray.length ?
                   <>
-                    <img className="global-settings" src={settingsIcon} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
+                    <img className="global-settings" src={settingsIcon} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" alt="#"/>
                     <div className="dropdown-menu dropdown-menu-right">
                       <button className="dropdown-item" type="button" onClick={this.removeAllPhotos}>Удалить все фотографии</button>
                     </div>
@@ -399,7 +394,7 @@ class Product extends Component {
                 imagesForDraw.length ?
                   imagesForDraw.map((path, index) => {
                     return <div key={index} className='image-block'>
-                      <img className="settings" src={settingsIcon} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
+                      <img className="settings" src={settingsIcon} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" alt="#"/>
                       <div className="dropdown-menu dropdown-menu-right">
                         {
                           productId ?
@@ -422,7 +417,7 @@ class Product extends Component {
                           из сервера
                           </button>
                       </div>
-                      <img className="product-img" src={path} />
+                      <img className="product-img" src={path} alt="#"/>
                     </div>
                   })
                   : null

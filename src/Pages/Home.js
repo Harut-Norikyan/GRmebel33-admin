@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { MdUpdate } from 'react-icons/md';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
-import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import Api from '../Api';
 import AlertService from '../Services/AlertService';
@@ -53,9 +52,9 @@ class Home extends Component {
   }
 
   render() {
-    if (localStorage.getItem("token") === undefined || null) {
-      return <Redirect to="/gr-admin" />
-    }
+    // if (localStorage.getItem("token") === undefined || null) {
+    //   return <Redirect to="/gr-admin" />
+    // }
 
     const { products, text, isinvalidSubmit } = this.state;
 
@@ -93,7 +92,7 @@ class Home extends Component {
                       <td>{product.name}</td>
                       <td>
                         {
-                          <img className="td-img" src={`http://5.63.152.244:4000/${JSON.parse(product.images)[0]}`} />
+                          <img className="td-img" src={`http://localhost:4000/${JSON.parse(product.images)[0]}`} alt="#"/>
                         }
                       </td>
                       <td><p className="td-desc">{product.description}</p></td>
