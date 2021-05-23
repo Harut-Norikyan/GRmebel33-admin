@@ -417,6 +417,7 @@ class Product extends Component {
                           из сервера
                           </button>
                       </div>
+                      {console.log(path)}
                       <img className="product-img" src={path} alt="#"/>
                     </div>
                   })
