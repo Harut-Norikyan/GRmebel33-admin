@@ -92,7 +92,7 @@ class Home extends Component {
                       <td>{product.name}</td>
                       <td>
                         {
-                          <img className="td-img" src={`http://localhost:4000/${JSON.parse(product.images)[0]}`} alt="#"/>
+                          <img className="td-img" src={`https://gr-mebel-admin.herokuapp.com/gr-admin/get-image/${JSON.parse(product.images)[0]}`} alt="#"/>
                         }
                       </td>
                       <td><p className="td-desc">{product.description}</p></td>

@@ -78,10 +78,6 @@ class Categories extends Component {
     this.setState({ image: '' });
   }
 
-  removePhotoWithServer = () => {
-
-  }
-
   onChangeFile = (event) => {
     this.setState({
       image: event.target.files[0],
@@ -202,7 +198,7 @@ class Categories extends Component {
                   <td>{category.categoryName}</td>
                   <td>
                     {
-                      <img className="td-img" src={`http://localhost:4000/${JSON.parse(category.images)[0]}`} alt="#"/>
+                      <img className="td-img" src={`https://gr-mebel-admin.herokuapp.com/gr-admin/get-image/${JSON.parse(category.images)[0]}`} alt="#"/>
                     }
                   </td>
                   <td className="center blue icon" onClick={() => this.getCategoryById(category._id)}><MdUpdate /></td>
