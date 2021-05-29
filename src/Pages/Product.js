@@ -5,6 +5,7 @@ import AlertService from '../Services/AlertService';
 import settingsIcon from "../Images/settings (2).png";
 import cameraGrey from "../Images/camera-grey.png";
 import { withRouter } from 'react-router';
+import { getImageUrl } from '..';
 
 class Product extends Component {
 
@@ -418,7 +419,7 @@ class Product extends Component {
                           </button>
                       </div>
                       {console.log(path)}
-                      <img className="product-img" src={path} alt="#"/>
+                      <img className="product-img" src={`${getImageUrl}/${path}`} alt="#"/>
                     </div>
                   })
                   : null

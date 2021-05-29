@@ -16,6 +16,10 @@ import watchers from './store/sagas';
 import "./Css/style.css";
 import 'react-notifications/lib/notifications.css';
 
+export const getImageUrl = process.env.NODE_ENV === 'production'
+  ? 'https://gr-mebel-admin.herokuapp.com/gr-admin/get-image'
+  : 'http://localhost:4000/gr-admin/get-image';
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const saga = createSagaMiddleware();

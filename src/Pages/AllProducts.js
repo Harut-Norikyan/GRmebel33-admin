@@ -5,6 +5,7 @@ import { Link, withRouter } from 'react-router-dom';
 import Api from '../Api';
 import AlertService from '../Services/AlertService';
 import ReactPaginate from 'react-paginate';
+import { getImageUrl } from '..';
 
 class AllProducts extends Component {
 
@@ -71,7 +72,7 @@ class AllProducts extends Component {
                   <td>{product.name}</td>
                   <td>
                     {
-                      <img className="td-img" src={`https://gr-mebel-admin.herokuapp.com/gr-admin/get-image/${JSON.parse(product.images)[0]}`} alt="#"/>
+                      <img className="td-img" src={`${getImageUrl}/${JSON.parse(product.images)[0]}`} alt="#"/>
                     }
                   </td>
                   <td><p className="td-desc">{product.description}</p></td>

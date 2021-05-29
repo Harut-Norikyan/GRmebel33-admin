@@ -7,6 +7,7 @@ import { BiReset } from "react-icons/bi";
 import settingsIcon from "../Images/settings (2).png";
 import cameraGrey from "../Images/camera-grey.png";
 import ReactPaginate from 'react-paginate';
+import { getImageUrl } from '..';
 
 class Categories extends Component {
   state = {
@@ -95,16 +96,17 @@ class Categories extends Component {
       this.setState({ isinvalidSubmit });
     }
     if (!isinvalidSubmit) {
-      var images = [image];
+      // var images = [image];
       if (!categoryId) {
-        Api.addCategory({ categoryName, images }).then(response => {
+        Api.addCategory({ categoryName, image }).then(response => {
+          console.log(response);
           const data = { ...response.data };
           data && AlertService.alert("success", data.message);
           this.setState({ categoryName: '', image: '', imageForDraw: '' });
           this.getCategories();
         });
       } else {
-        Api.updateCategory({ categoryName, categoryId, images, imgPath: imageForDraw }).then(response => {
+        Api.updateCategory({ categoryName, categoryId, image, imgPath: imageForDraw }).then(response => {
           const data = { ...response.data };
           data && AlertService.alert("success", data.message);
           this.setState({ categoryName: '', categoryId: null, image: '', imageForDraw: '' });
@@ -137,13 +139,13 @@ class Categories extends Component {
               <div className={`upload-img ${isinvalidSubmit && !image ? "error" : ""}`}>
                 <input type="file" id="upload" hidden name="img" multiple onChange={this.onChangeFile} />
                 <label className="labelForUpload" htmlFor="upload">
-                  <img src={cameraGrey} alt="#"/>
+                  <img src={cameraGrey} alt="#" />
                 </label>
               </div>
               {
                 image ?
                   <div className='image-block'>
-                    <img className="settings" src={settingsIcon} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" alt="#"/>
+                    <img className="settings" src={settingsIcon} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" alt="#" />
                     <div className="dropdown-menu dropdown-menu-right">
                       <button
                         className="dropdown-item"
@@ -153,14 +155,14 @@ class Categories extends Component {
                         Удалить фото
                     </button>
                     </div>
-                    <img className="category-img" src={URL.createObjectURL(image)} alt="#"/>
+                    <img className="category-img" src={URL.createObjectURL(image)} alt="#" />
                   </div>
                   : null
               }
               {
                 imageForDraw && !image ?
                   <div className='image-block'>
-                    <img className="category-img" src={imageForDraw} alt="#"/>
+                    <img className="category-img" src={`${getImageUrl}/${imageForDraw}`} alt="#" />
                   </div>
                   : null
               }
@@ -198,7 +200,7 @@ class Categories extends Component {
                   <td>{category.categoryName}</td>
                   <td>
                     {
-                      <img className="td-img" src={`https://gr-mebel-admin.herokuapp.com/gr-admin/get-image/${JSON.parse(category.images)[0]}`} alt="#"/>
+                      <img className="td-img" src={`${getImageUrl}/${JSON.parse(category.images)[0]}`} alt="#" />
                     }
                   </td>
                   <td className="center blue icon" onClick={() => this.getCategoryById(category._id)}><MdUpdate /></td>
