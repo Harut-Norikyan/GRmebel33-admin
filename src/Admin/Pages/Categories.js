@@ -103,16 +103,17 @@ class Categories extends Component {
       this.setState({ isinvalidSubmit });
     }
     if (!isinvalidSubmit) {
-      var images = [image];
+      // var images = [image];
       if (!categoryId) {
-        Api.addCategory({ categoryName, images }).then(response => {
+        Api.addCategory({ categoryName, image }).then(response => {
+          console.log(response);
           const data = { ...response.data };
           data && AlertService.alert("success", data.message);
           this.setState({ categoryName: '', image: '', imageForDraw: '' });
           this.getCategories();
         });
       } else {
-        Api.updateCategory({ categoryName, categoryId, images, imgPath: imageForDraw }).then(response => {
+        Api.updateCategory({ categoryName, categoryId, image, imgPath: imageForDraw }).then(response => {
           const data = { ...response.data };
           data && AlertService.alert("success", data.message);
           this.setState({ categoryName: '', categoryId: null, image: '', imageForDraw: '' });

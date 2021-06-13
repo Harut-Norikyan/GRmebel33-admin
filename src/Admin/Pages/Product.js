@@ -8,7 +8,6 @@ import { getImageUrl } from '../..';
 import { connect } from "react-redux";
 import { addPageSpinner, removePageSpinner } from "../../store/actions/spinner";
 import uuid from 'react-uuid';
-import Auxiliary from '../../User/Components/Auxiliary';
 
 class Product extends Component {
 
