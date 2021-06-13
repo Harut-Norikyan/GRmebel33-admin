@@ -893,6 +893,9 @@ footer .footer-info-wrapper .footer-info-list a i {
   .form-inline input {
     width: 200px;
   }
+  .contact-information {
+    margin-left: 10px;
+  }
   .btn-primary {
     font-size: 12px;
   }
