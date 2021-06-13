@@ -1,9 +1,10 @@
 import axios from "axios";
 import { serialize } from 'object-to-formdata';
 
-// const API_URL = process.env.NODE_ENV === "development" ? 'http://localhost:4000/gr-admin' : 'https://gr-mebel-admin.herokuapp.com/gr-admin';
+const API_URL = process.env.NODE_ENV === "development" ? 'http://localhost:4000/gr-admin' : 'https://gr-mebel-admin.herokuapp.com/gr-admin';
 // const API_URL = 'http://5.63.152.244:4000/gr-admin';
-const API_URL = "https://gr-mebel-admin.herokuapp.com/gr-admin";
+// const API_URL = "https://gr-mebel-admin.herokuapp.com/gr-admin";
+// const API_URL = "http://localhost:4000/gr-admin";
 const api = axios.create({
   baseURL: API_URL,
 });
@@ -19,7 +20,7 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(response => response, function (error) {
   if (error) {
     localStorage.clear()
-    window.location.href = "/gr-admin"
+    window.location.href = "/"
     return Promise.reject(error);
   }
 });
@@ -33,6 +34,9 @@ class Api {
   }
   static login(email, password) {
     return api.post('/user/login', { email, password });
+  }
+  static submitYourApplication(phoneNumber, name) {
+    return api.post('/user/submit-your-application', { phoneNumber, name });
   }
 
   //// Category
@@ -62,7 +66,7 @@ class Api {
   static addAboutUsDescrition(description) {
     return api.post('/aboutUs/add-about-us-description', { description });
   }
-  static getAboutUsDescrition() {
+  static getAboutUsDescription() {
     return api.get('/aboutUs/get-about-us-description');
   }
   static updateAboutUsDescrition(description, descId) {
@@ -88,6 +92,9 @@ class Api {
   static getProductById(id) {
     return api.get(`/product/get-product-by-id/${id}`);
   }
+  static getProductsByIds(productIds) {
+    return api.post(`/product/get-products-by-id`, { productIds });
+  }
   static removeProduct(id, images) {
     return api.post(`/product/remove-product/${id}`, { images });
   }
@@ -103,5 +110,9 @@ class Api {
   static getProductByCategoryId(id) {
     return api.get(`/product/get-product-by-category-id/${id}`);
   }
+  static getAllProducts() {
+    return api.get(`/product/get-all-products`);
+  }
+
 }
 export default Api;

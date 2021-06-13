@@ -10,14 +10,16 @@ class AlertService {
         NotificationManager.info('');
         break;
       case 'success':
-        NotificationManager.success('', respMessage, 4000);
+        NotificationManager.success('', respMessage, 2000);
         break;
       case 'warning':
-        NotificationManager.warning('', respMessage, 4000);
+        NotificationManager.warning('', respMessage, 2000);
         break;
       case 'error':
-        NotificationManager.error('', respMessage, 6000);
+        NotificationManager.error('', respMessage, 3000);
         break;
+      default:
+        break
     }
   }
 

@@ -1,7 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'jquery/dist/jquery.min.js';
-import 'bootstrap/dist/js/bootstrap.min.js';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -13,8 +9,19 @@ import reportWebVitals from './reportWebVitals';
 import reducer from './store/reducers';
 import watchers from './store/sagas';
 
-import "./Css/style.css";
+import "./User/Css/style.css";
+import "./Admin/Css/style.css";
+
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/js/bootstrap.min.js';
+// import 'jquery/dist/jquery.min.js';
+
 import 'react-notifications/lib/notifications.css';
+import "react-multi-carousel/lib/styles.css";
+
+export const getImageUrl = process.env.NODE_ENV === 'production'
+  ? 'https://gr-mebel-admin.herokuapp.com/gr-admin/get-image'
+  : 'http://localhost:4000/gr-admin/get-image';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
