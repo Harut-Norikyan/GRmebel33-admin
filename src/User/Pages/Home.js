@@ -161,8 +161,8 @@ class Home extends Component {
       },
       smallMobile: {
         breakpoint: { max: 575, min: 320 },
-        items: 2,
-        slidesToSlide: 2
+        items: 1,
+        slidesToSlide: 1
       },
       verySmallMobile: {
         breakpoint: { max: 320, min: 0 },
@@ -173,11 +173,9 @@ class Home extends Component {
 
 
     let shuffeledProducts = [];
-    // shuffeledProducts = this.shuffle([...allProducts]).splice(0, 3);
     shuffeledProducts = [...allProducts].reverse().splice(0, 3);
 
     let shuffeledCategoties = [];
-    // shuffeledCategoties = this.shuffle([...categories]).splice(0, 3);
     shuffeledCategoties = [...categories].reverse().splice(0, 3);
 
     let productsWithOutDiscount = [];

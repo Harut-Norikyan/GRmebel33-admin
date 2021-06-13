@@ -902,6 +902,9 @@ footer .footer-info-wrapper .footer-info-list a i {
   .our-service svg {
     max-width: 50px !important;
   }
+  .answers-desc {
+    width: 100% !important;
+  }
 }
 @media (max-width: 991.98px) {
   .navbar-brand img {
