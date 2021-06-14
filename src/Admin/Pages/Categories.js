@@ -106,7 +106,6 @@ class Categories extends Component {
       // var images = [image];
       if (!categoryId) {
         Api.addCategory({ categoryName, image }).then(response => {
-          console.log(response);
           const data = { ...response.data };
           data && AlertService.alert("success", data.message);
           this.setState({ categoryName: '', image: '', imageForDraw: '' });

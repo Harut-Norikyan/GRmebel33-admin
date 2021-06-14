@@ -8,10 +8,11 @@ import { addPageSpinner, removePageSpinner } from "../../store/actions/spinner";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import Auxiliary from '../Components/Auxiliary';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { addProductToWishList, removeProductFromWishList } from "../../store/actions/products";
 import WishListSettings from '../../Services/WishListSettings';
+import { compose } from 'redux';
 
 
 const { createSliderWithTooltip } = Slider;
@@ -122,6 +123,10 @@ class Category extends Component {
         this.changeCurrentProductWishListStatus(id);
       }
     });
+  }
+
+  redirectToProductPage = (id) => {
+    this.props.history.push(`/product/${id}`)
   }
 
   changeCurrentProductWishListStatus = (id) => {
@@ -239,7 +244,11 @@ class Category extends Component {
                     products.length ? products.map((product, index) => {
                       return (showProductsCount > index) ? <div key={product._id} className="card-item">
                         <div className="card product-wrpper">
-                          <div className="item-image" style={{ backgroundImage: `url(${getImageUrl}/${JSON.parse(product.images)[0]})` }}>
+                          <div
+                           className="item-image"
+                            style={{ backgroundImage: `url(${getImageUrl}/${JSON.parse(product.images)[0]})` }}
+                            onClick={() => this.redirectToProductPage(product._id)}
+                            >
                             <div className="product-settings">
                               <i className="fas fa-search-plus" onClick={() => this.enlargephoto(`${getImageUrl}/${JSON.parse(product.images)[0]}`)}></i>
                               <i
@@ -313,9 +322,6 @@ class Category extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-})
-
 const mapDispatchToProps = {
   addPageSpinner,
   removePageSpinner,
@@ -323,4 +329,8 @@ const mapDispatchToProps = {
   removeProductFromWishList
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Category)
+export default compose(
+  withRouter,
+  connect(null, mapDispatchToProps)
+)(Category);
+

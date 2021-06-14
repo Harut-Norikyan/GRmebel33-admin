@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router';
+import { Redirect, withRouter } from 'react-router';
 import Api from '../../Api';
 import { connect } from "react-redux";
 import { addPageSpinner, removePageSpinner } from "../../store/actions/spinner";
@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import WishListSettings from '../../Services/WishListSettings';
 import { addProductToWishList, removeProductFromWishList } from "../../store/actions/products";
+import { compose } from 'redux';
 
 class WishList extends Component {
 
@@ -68,6 +69,10 @@ class WishList extends Component {
       })
     })
     this.setState({ products });
+  }
+
+  redirectToProductPage = (id) => {
+    this.props.history.push(`/product/${id}`)
   }
 
   removeProductFromWishList = (event, id) => {
@@ -135,7 +140,11 @@ class WishList extends Component {
                       products.length ? products.map((product, index) => {
                         return (showProductsCount > index) ? <div key={product._id} className="card-item">
                           <div className="card product-wrpper">
-                            <div className="item-image" style={{ backgroundImage: `url(${getImageUrl}/${JSON.parse(product.images)[0]})` }}>
+                            <div
+                              className="item-image"
+                              style={{ backgroundImage: `url(${getImageUrl}/${JSON.parse(product.images)[0]})` }}
+                              onClick={() => this.redirectToProductPage(product._id)}
+                            >
                               <div className="product-settings">
                                 <i className="fas fa-search-plus" onClick={() => this.enlargephoto(`${getImageUrl}/${JSON.parse(product.images)[0]}`)}></i>
                                 <i
@@ -220,4 +229,8 @@ const mapDispatchToProps = {
   removeProductFromWishList
 }
 
-export default connect(null, mapDispatchToProps)(WishList)
+export default compose(
+  withRouter,
+  connect(null, mapDispatchToProps)
+)(WishList);
+

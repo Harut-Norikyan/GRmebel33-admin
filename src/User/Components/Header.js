@@ -64,15 +64,15 @@ class Header extends Component {
           <div className="contact-information my-1">
             <div className="contact-phone">
               <i className="fas fa-phone-square-alt"></i>
-              <p>+7 901 888 88 79</p>
+              <a className="header-footer-phone-number" href="tel:+79018888879">+7 901 888 88 79</a>
             </div>
             {
               wishListProductsCountWithStorage.length || wishListProductsCount ?
                 <Auxiliary>
-                  <span>|</span>
+                  {/* <span className="heart-line">|</span> */}
                   <Link
                     to={(wishListProductsCountWithStorage.length || wishListProductsCount) ? "/wish-list" : "#"}
-                    className="wish-list"
+                    className="wish-list ml-3"
                   >
                     <i className="fas fa-heart"></i>
                     {

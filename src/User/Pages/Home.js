@@ -173,7 +173,7 @@ class Home extends Component {
 
 
     let shuffeledProducts = [];
-    shuffeledProducts = [...allProducts].reverse().splice(0, 3);
+    shuffeledProducts = [...allProducts].splice(0, 3);
 
     let shuffeledCategoties = [];
     shuffeledCategoties = [...categories].reverse().splice(0, 3);
@@ -186,7 +186,7 @@ class Home extends Component {
       else { productsWithDiscount.push(product) }
     });
     if (productsWithOutDiscount) productsWithOutDiscount = [...productsWithOutDiscount].splice(0, 10)
-    if (productsWithDiscount) productsWithDiscount = ([...productsWithDiscount]).splice(0, 10);
+    if (productsWithDiscount) productsWithDiscount = ([...productsWithDiscount]).reverse().splice(0, 10);
 
     return (
       <Auxiliary>
@@ -305,7 +305,7 @@ class Home extends Component {
                                 <div
                                   className="item-image"
                                   style={{ backgroundImage: `url(${getImageUrl}/${JSON.parse(product.images)[0]})` }}
-                                // onClick={() => this.redirectToProductPage(product._id)}
+                                  onClick={() => this.redirectToProductPage(product._id)}
                                 >
                                   <div className="product-settings">
                                     <i className="fas fa-search-plus" onClick={(event) => this.enlargephoto(event, `${getImageUrl}/${JSON.parse(product.images)[0]}`)}></i>
@@ -386,7 +386,11 @@ class Home extends Component {
                           {productsWithDiscount.map(product => {
                             return <div key={product._id} className="card-item">
                               <div className="card product-wrpper">
-                                <div className="item-image" style={{ backgroundImage: `url(${getImageUrl}/${JSON.parse(product.images)[0]})` }}>
+                                <div
+                                  className="item-image"
+                                  style={{ backgroundImage: `url(${getImageUrl}/${JSON.parse(product.images)[0]})` }}
+                                  onClick={() => this.redirectToProductPage(product._id)}
+                                >
                                   <div className="product-settings">
                                     <i className="fas fa-search-plus" onClick={(event) => this.enlargephoto(event, `${getImageUrl}/${JSON.parse(product.images)[0]}`)}></i>
                                     <i
@@ -443,41 +447,8 @@ class Home extends Component {
             </div>
           </div>
         </section>
-        {/* Partners  */}
-        <section className="section answers-block my-1">
-          <div className="container">
-            <div className="row">
-              <div className="col-12">
-                <div className="section-title">
-                  <h1>Партнеры</h1>
-                  <small className="sub-title">производители лучших мебельных материалов и комплектующих</small>
-                </div>
-              </div>
-              <ul className="partners-block">
-                <li className="partner-item">
-                  <div className="partner-icon" style={{ backgroundImage: `url(${partner1})` }} />
-                  <p>Лучшая австрийская фурнитура</p>
-                </li>
-                <li className="partner-item">
-                  <div className="partner-icon" style={{ backgroundImage: `url(${partner2})` }} />
-                  <p>Надежная немецкая фурнитура</p>
-                </li>
-                <li className="partner-item">
-                  <div className="partner-icon" style={{ backgroundImage: `url(${partner4})` }} />
-                  <p>Европейский производитель ЛДСП EGGER</p>
-                </li>
-                <li className="partner-item">
-                  <div className="partner-icon" style={{ backgroundImage: `url(${partner5})` }} />
-                  <p>Качественная российская фурнитура</p>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-        </section>
-        {/* <hr className="m-0" /> */}
         {/* Pay,About us */}
-        <section className="section section-background services">
+        <section className="section  services">
           <div className="container">
             <div className="row">
               <div className="col-12">
@@ -517,6 +488,40 @@ class Home extends Component {
             </div>
           </div>
         </section>
+        {/* Partners  */}
+        <section className="section section-background answers-block my-0">
+          <div className="container">
+            <div className="row">
+              <div className="col-12">
+                <div className="section-title">
+                  <h1>Партнеры</h1>
+                  <small className="sub-title">производители лучших мебельных материалов и комплектующих</small>
+                </div>
+              </div>
+              <ul className="partners-block">
+                <li className="partner-item">
+                  <div className="partner-icon" style={{ backgroundImage: `url(${partner1})` }} />
+                  <p>Лучшая австрийская фурнитура</p>
+                </li>
+                <li className="partner-item">
+                  <div className="partner-icon" style={{ backgroundImage: `url(${partner2})` }} />
+                  <p>Надежная немецкая фурнитура</p>
+                </li>
+                <li className="partner-item">
+                  <div className="partner-icon" style={{ backgroundImage: `url(${partner4})` }} />
+                  <p>Европейский производитель ЛДСП EGGER</p>
+                </li>
+                <li className="partner-item">
+                  <div className="partner-icon" style={{ backgroundImage: `url(${partner5})` }} />
+                  <p>Качественная российская фурнитура</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </section>
+        {/* <hr className="m-0" /> */}
+
         <hr className="m-0" />
         {/* Answers */}
         <section className="section answers-block pt-2 pb-5">
@@ -535,7 +540,8 @@ class Home extends Component {
                         <i className="fas fa-phone-square-alt"></i>
                         <div className="contact-info-item">
                           <small>Ежедневно с 09:00 до 21:00</small>
-                          <b className="d-block">+7 901 888 88 79</b>
+                          {/* <b className="d-block">+7 901 888 88 79</b> */}
+                          <a className="answer-phone" href="tel:+79018888879">+7 901 888 88 79</a>
                         </div>
                       </div>
                     </div>

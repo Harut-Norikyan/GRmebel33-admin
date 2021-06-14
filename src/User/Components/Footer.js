@@ -22,7 +22,7 @@ class Footer extends Component {
                   <ul className="footer-info-list">
                     <Link to="/about-us" className="footer-block-title about-us">О нас</Link>
                     <p className="footer-block-title">Контакты</p>
-                    <p>+7 901 888 88 79</p>
+                    <a className="header-footer-phone-number footer-phone" href="tel:+79018888879">+7 901 888 88 79</a>
                     <div>
                       <span>
                         <Telegram />

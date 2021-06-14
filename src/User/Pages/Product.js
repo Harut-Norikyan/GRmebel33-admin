@@ -7,11 +7,12 @@ import uuid from 'react-uuid';
 import Auxiliary from '../Components/Auxiliary';
 import NukaCarousel from 'nuka-carousel';
 import { getImageUrl } from '../..';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import AlertService from '../../Services/AlertService';
 import WishListSettings from '../../Services/WishListSettings';
 import { addProductToWishList, removeProductFromWishList } from "../../store/actions/products";
 import { Helmet } from 'react-helmet';
+import { compose } from 'redux';
 
 class Product extends Component {
 
@@ -53,6 +54,10 @@ class Product extends Component {
 
   hideLargePhoto = () => {
     this.setState({ showLargePhoto: false, largeImgPath: null });
+  }
+
+  redirectToProductPage = (id) => {
+    this.props.history.push(`/product/${id}`)
   }
 
   getProductById = (productId) => {
@@ -156,8 +161,8 @@ class Product extends Component {
       },
       smallMobile: {
         breakpoint: { max: 575, min: 320 },
-        items: 2,
-        slidesToSlide: 2
+        items: 1,
+        slidesToSlide: 1
       },
       verySmallMobile: {
         breakpoint: { max: 320, min: 0 },
@@ -165,6 +170,7 @@ class Product extends Component {
         slidesToSlide: 1
       }
     };
+
     return (
       product ? <Auxiliary>
         {
@@ -286,7 +292,11 @@ class Product extends Component {
                           {similarProducts.map(product => {
                             return <div key={product._id} className="card-item">
                               <div className="card product-wrpper">
-                                <div className="item-image" style={{ backgroundImage: `url(${getImageUrl}/${JSON.parse(product.images)[0]})` }}>
+                                <div
+                                  className="item-image"
+                                  style={{ backgroundImage: `url(${getImageUrl}/${JSON.parse(product.images)[0]})` }}
+                                  onClick={() => this.redirectToProductPage(product._id)}
+                                >
                                   <div className="product-settings">
                                     <i className="fas fa-search-plus" onClick={() => this.enlargephoto(`${getImageUrl}/${JSON.parse(product.images)[0]}`)}></i>
                                     <i
@@ -355,4 +365,8 @@ const mapDispatchToProps = {
   removeProductFromWishList
 }
 
-export default connect(null, mapDispatchToProps)(Product);
+export default compose(
+  withRouter,
+  connect(null, mapDispatchToProps)
+)(Product);
+

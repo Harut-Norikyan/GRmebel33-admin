@@ -272,6 +272,19 @@ button[type="reset"] {
 .aditional-information ul li {
   background-color: #f7f9fa;
 }
+.header-footer-phone-number {
+  color: #ffffff !important;
+  margin-left: 10px;
+  opacity: 1 !important;
+  display: inline !important;
+}
+.header-footer-phone-number:hover {
+  color: #ffffff !important;
+}
+.footer-phone {
+  text-decoration: underline !important;
+  margin: 0;
+}
 .contact-information {
   display: flex;
   align-items: center;
@@ -279,8 +292,9 @@ button[type="reset"] {
 .contact-information .contact-phone {
   color: #ffffff;
   display: flex;
-  align-items: center;
   font-size: 20px;
+  align-items: center;
+  border-bottom: 1px solid #ffffff;
 }
 .contact-information .contact-phone p {
   margin: 0 10px;
@@ -336,7 +350,8 @@ footer .footer-info-wrapper .footer-info-list p {
 footer .footer-info-wrapper .footer-info-list svg {
   height: 20px;
   width: 20px;
-  margin: 0 10px 0 0;
+  margin: 5px 15px 0 0;
+  cursor: pointer;
 }
 footer .footer-info-wrapper .footer-info-list a {
   padding: 5px 0;
@@ -740,10 +755,12 @@ footer .footer-info-wrapper .footer-info-list a i {
   color: #20bf6b;
   margin-right: 5px;
 }
-.answers-block .contact-info-item b {
+.answers-block .contact-info-item .answer-phone {
   display: block;
   text-align: left;
-  font-size: 18px;
+  color: #000000;
+  font-weight: 700;
+  font-size: 20px;
 }
 .search {
   background-color: #20bf6b !important;
@@ -776,35 +793,28 @@ footer .footer-info-wrapper .footer-info-list a i {
   font-size: 14px;
   color: #808080;
 }
+.number-block {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.number-block .phone-input {
+  padding-left: 27px;
+}
+.number-block .operator-code {
+  font-size: 17px !important;
+  margin-right: 5px;
+  position: absolute;
+  top: 8px;
+  left: 5px;
+}
 /* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 @media (min-width: 1200px) {
   .item-slider-wrapper .item-slider-max-5 {
     grid-auto-columns: calc((100% - (4 - 1) * 1rem)/4);
   }
-}
-@media (min-width: 992px) {
-  .our-service {
-    flex: 1 !important;
-  }
-  .our-service svg {
-    max-width: 60px !important;
-  }
-  .our-service:first-child svg {
-    max-width: 90px;
-  }
-  .navbar-brand img {
-    width: 200px;
-  }
-  .section {
-    padding: 70px 0;
-  }
-  .section .section-title h1 {
-    font-size: 25px;
-    letter-spacing: 8px;
-  }
-  .section .section-title h2 {
-    font-size: 25px;
-    letter-spacing: 4px !important;
+  .product-list .card-item {
+    width: calc(25% - 20px);
   }
 }
 @media (min-width: 576px) {
@@ -866,27 +876,20 @@ footer .footer-info-wrapper .footer-info-list a i {
     letter-spacing: 4px !important;
   }
 }
-.number-block {
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-.number-block .phone-input {
-  padding-left: 27px;
-}
-.number-block .operator-code {
-  font-size: 17px !important;
-  margin-right: 5px;
-  position: absolute;
-  top: 8px;
-  left: 5px;
-}
-@media (min-width: 1200px) {
-  .item-slider-wrapper .item-slider-max-5 {
-    grid-auto-columns: calc((100% - (4 - 1) * 1rem)/4);
+@media (max-width: 991.98px) {
+  .navbar-brand img {
+    width: 150px;
   }
-  .product-list .card-item {
-    width: calc(25% - 20px);
+  .section {
+    padding: 40px 0;
+  }
+  .section .section-title h1 {
+    font-size: 18px;
+    letter-spacing: 4px;
+  }
+  .section .section-title h2 {
+    font-size: 18px;
+    letter-spacing: 2px !important;
   }
 }
 @media (max-width: 575.98px) {
@@ -908,20 +911,29 @@ footer .footer-info-wrapper .footer-info-list a i {
   .answers-desc {
     width: 100% !important;
   }
-}
-@media (max-width: 991.98px) {
-  .navbar-brand img {
-    width: 150px;
+  .first-slider {
+    background-size: contain !important;
+    background-color: transparent;
+    height: 100px;
   }
-  .section {
-    padding: 40px 0;
+  .product-slider {
+    background-size: contain !important;
+    background-color: transparent;
+    margin: 1px;
   }
-  .section .section-title h1 {
-    font-size: 18px;
-    letter-spacing: 4px;
+  .slider-slide {
+    height: 200px !important;
   }
-  .section .section-title h2 {
-    font-size: 18px;
-    letter-spacing: 2px !important;
+  .answers-block .card-item {
+    margin: 0 15px;
+  }
+  .item-image .product-settings {
+    top: 30px !important;
+  }
+  .item-image .product-settings i {
+    margin: 0 5px !important;
+  }
+  .item-image:hover .product-settings {
+    transform: translate(-50%, -30px) !important;
   }
 }
