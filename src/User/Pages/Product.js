@@ -48,7 +48,8 @@ class Product extends Component {
     return a;
   }
 
-  enlargephoto = (image) => {
+  enlargephoto = (event, image) => {
+    event.stopPropagation();
     this.setState({ showLargePhoto: true, largeImgPath: image });
   }
 
@@ -298,7 +299,7 @@ class Product extends Component {
                                   onClick={() => this.redirectToProductPage(product._id)}
                                 >
                                   <div className="product-settings">
-                                    <i className="fas fa-search-plus" onClick={() => this.enlargephoto(`${getImageUrl}/${JSON.parse(product.images)[0]}`)}></i>
+                                    <i className="fas fa-search-plus" onClick={(event) => this.enlargephoto(event, `${getImageUrl}/${JSON.parse(product.images)[0]}`)}></i>
                                     <i
                                       className={`fas fa-heart ${product.isWishlist ? "active-heart" : ""}`}
                                       onClick={(event) => this.addOrRemoveProductFromWishList(event, product._id)}

@@ -16,7 +16,8 @@ class Search extends Component {
     largeImgPath: null
   }
 
-  enlargephoto = (image) => {
+  enlargephoto = (event,image) => {
+    event.stopPropagation();
     this.setState({ showLargePhoto: true, largeImgPath: image });
   }
 
@@ -65,12 +66,12 @@ class Search extends Component {
                       return (showProductsCount > index) ? <div key={product._id} className="card-item">
                         <div className="card product-wrpper">
                           <div
-                           className="item-image"
+                            className="item-image"
                             style={{ backgroundImage: `url(${getImageUrl}/${JSON.parse(product.images)[0]})` }}
                             onClick={(event) => this.redirectToProductPage(event, product._id)}
-                            >
+                          >
                             <div className="product-settings">
-                              <i className="fas fa-search-plus" onClick={() => this.enlargephoto(`${getImageUrl}/${JSON.parse(product.images)[0]}`)}></i>
+                              <i className="fas fa-search-plus" onClick={(event) => this.enlargephoto(event, `${getImageUrl}/${JSON.parse(product.images)[0]}`)}></i>
                               <i className="fas fa-heart"></i>
                             </div>
                             {
