@@ -250,8 +250,12 @@ class Category extends Component {
                             style={{ backgroundImage: `url(${getImageUrl}/${JSON.parse(product.images)[0]})` }}
                             onClick={() => this.redirectToProductPage(product._id)}
                           >
+                            {/* <div className="product-settings"> */}
                             <div className="product-settings">
-                              <i className="fas fa-search-plus" onClick={(event) => this.enlargephoto(event, `${getImageUrl}/${JSON.parse(product.images)[0]}`)}></i>
+                              <i
+                                className="fas fa-search-plus"
+                                onClick={(event) => this.enlargephoto(event, `${getImageUrl}/${JSON.parse(product.images)[0]}`)}
+                              />
                               <i
                                 className={`fas fa-heart ${product.isWishlist ? "active-heart" : ""}`}
                                 onClick={(event) => this.addOrRemoveProductFromWishList(event, product._id)}

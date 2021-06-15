@@ -905,11 +905,9 @@ footer .footer-info-wrapper .footer-info-list a i {
   .go-back img {
     margin: 0 5px 0 10px;
   }
-  .category .card-item {
-    max-width: 47%;
-  }
   .category .item-image p {
     margin: 1px !important;
+    font-size: 13px !important;
   }
   .form-inline input {
     width: 200px;
