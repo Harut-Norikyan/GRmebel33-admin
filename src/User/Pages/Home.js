@@ -4,12 +4,6 @@ import NukaCarousel from 'nuka-carousel';
 import MultiCarousel from "react-multi-carousel";
 import Auxiliary from '../Components/Auxiliary';
 import { connect } from "react-redux";
-import CreditCart from "../Assets/Svg/CreditCart";
-import Factory from "../Assets/Svg/Factory";
-import FreeDelivery from "../Assets/Svg/FreeDelivery";
-import PrePayment from "../Assets/Svg/PrePayment";
-import Pencil from "../Assets/Svg/Pencil";
-import Support from "../Assets/Svg/Support";
 import { addPageSpinner, removePageSpinner } from "../../store/actions/spinner";
 import { addProductToWishList, removeProductFromWishList } from "../../store/actions/products";
 import { Link, withRouter } from 'react-router-dom';
@@ -20,10 +14,18 @@ import uuid from 'react-uuid';
 import AlertService from '../../Services/AlertService';
 import WishListSettings from '../../Services/WishListSettings';
 import PromiseService from '../../Services/Promise';
-import partner1 from "../Images/partner-1.jpg"
-import partner2 from "../Images/partner-2.jpg"
-import partner4 from "../Images/partner-4.jpg"
-import partner5 from "../Images/partner-5.jpg"
+import partner1 from "../Images/partner-1.jpg";
+import partner2 from "../Images/partner-2.jpg";
+import partner4 from "../Images/partner-4.jpg";
+import partner5 from "../Images/partner-5.jpg";
+import discount from "../Images/discount.png";
+import feedback from "../Images/feedback.png";
+import measurer from "../Images/measurer.png";
+import delivery from "../Images/delivery.png";
+import shield from "../Images/shield.png";
+import taxFree from "../Images/tax-free.png";
+
+
 
 const TITLE = 'Главная';
 
@@ -460,27 +462,33 @@ class Home extends Component {
               <div className="col-12">
                 <div className="service-flex">
                   <div className="our-service">
-                    <Factory />
+                    <img src={discount} alt="/" />
+                    {/* <Factory /> */}
                     <small>Скидки</small>
                   </div>
                   <div className="our-service">
-                    <CreditCart />
+                    {/* <CreditCart /> */}
+                    <img src={shield} alt="/" />
                     <small>Гарантия качества</small>
                   </div>
                   <div className="our-service">
-                    <FreeDelivery />
+                    {/* <FreeDelivery /> */}
+                    <img src={delivery} alt="/" />
                     <small>Доставка</small>
                   </div>
                   <div className="our-service">
-                    <PrePayment />
+                    {/* <PrePayment /> */}
+                    <img src={taxFree} alt="/" />
                     <small>Без предоплат</small>
                   </div>
                   <div className="our-service">
-                    <Pencil />
+                    {/* <Pencil /> */}
+                    <img src={measurer} alt="/" />
                     <small>Выезд замерщика</small>
                   </div>
                   <div className="our-service">
-                    <Support />
+                    {/* <Support /> */}
+                    <img src={feedback} alt="/" />
                     <small>Обратная связь</small>
                   </div>
                 </div>
@@ -540,8 +548,7 @@ class Home extends Component {
                         <i className="fas fa-phone-square-alt"></i>
                         <div className="contact-info-item">
                           <small>Ежедневно с 09:00 до 21:00</small>
-                          {/* <b className="d-block">+7 901 888 88 79</b> */}
-                          <a className="answer-phone" href="tel:+79018888879">+7 901 888 88 79</a>
+                          <b className="d-block">+7 901 888 88 79</b>
                         </div>
                       </div>
                     </div>

@@ -7,6 +7,7 @@ import { compose } from 'redux';
 import PromiseService from '../../Services/Promise';
 import Auxiliary from './Auxiliary';
 import AlertService from '../../Services/AlertService';
+import leftArrow from "../Images/left-arrow (1).png";
 
 
 class Header extends Component {
@@ -48,6 +49,10 @@ class Header extends Component {
     })
   }
 
+  goBack = () => {
+    window.history.back();
+  }
+
   render() {
     const { isShowSubHeader, isinvalidSubmit, text } = this.state;
     const { categories, wishListProductsCount } = this.props;
@@ -60,7 +65,17 @@ class Header extends Component {
     return (
       <header>
         <nav className="navbar navbar-expand-lg navbar-light dark-background justify-content-between d-flex">
-          <Link className="navbar-brand my-1" to="/"><img src={logoWhite1} alt="#" /></Link>
+          <div className="d-flex align-items-center">
+            {
+              this.props.location.pathname.includes("category") ||
+                this.props.location.pathname.includes("categories") ||
+                this.props.location.pathname.includes("wish-list") ||
+                this.props.location.pathname.includes("product") ?
+                <div className="go-back" onClick={this.goBack}><img src={leftArrow} alt="/" /></div>
+                : null
+            }
+            <Link className="navbar-brand my-1" to="/"><img src={logoWhite1} alt="#" /></Link>
+          </div>
           <div className="contact-information my-1">
             <div className="contact-phone">
               <i className="fas fa-phone-square-alt"></i>

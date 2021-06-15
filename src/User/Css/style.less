@@ -346,6 +346,11 @@ button[type="reset"] {
       border-radius: @paragraph-font-size;
       position: relative;
 
+      img {
+        width: 60px;
+        height: 60px;
+      }
+
       svg {
         box-sizing: content-box;
 
@@ -401,7 +406,6 @@ button[type="reset"] {
     align-items: center;
     font-size: 20px;
     align-items: center;
-    border-bottom: 1px solid @white-color;
 
     p {
       margin: 0 10px;
@@ -989,7 +993,7 @@ footer {
   }
 
   .contact-info-item {
-    .answer-phone {
+    b {
       display: block;
       text-align: left;
       color: @black-color;
@@ -1054,6 +1058,10 @@ footer {
     top: 8px;
     left: 5px;
   }
+}
+
+.go-back {
+  display: none;
 }
 
 /* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
@@ -1232,6 +1240,25 @@ footer {
 
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
+
+  .go-back {
+    display: block;
+
+    img {
+      margin: 0 5px 0 10px;
+    }
+  }
+
+  .category {
+    .card-item {
+      max-width: 47%;
+    }
+
+    .item-image p {
+      margin: 1px !important;
+    }
+  }
+
   .form-inline {
     input {
       width: 200px;

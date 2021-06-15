@@ -254,6 +254,10 @@ button[type="reset"] {
   border-radius: 14px;
   position: relative;
 }
+.services .service-flex .our-service img {
+  width: 60px;
+  height: 60px;
+}
 .services .service-flex .our-service svg {
   box-sizing: content-box;
 }
@@ -294,7 +298,6 @@ button[type="reset"] {
   display: flex;
   font-size: 20px;
   align-items: center;
-  border-bottom: 1px solid #ffffff;
 }
 .contact-information .contact-phone p {
   margin: 0 10px;
@@ -755,7 +758,7 @@ footer .footer-info-wrapper .footer-info-list a i {
   color: #20bf6b;
   margin-right: 5px;
 }
-.answers-block .contact-info-item .answer-phone {
+.answers-block .contact-info-item b {
   display: block;
   text-align: left;
   color: #000000;
@@ -807,6 +810,9 @@ footer .footer-info-wrapper .footer-info-list a i {
   position: absolute;
   top: 8px;
   left: 5px;
+}
+.go-back {
+  display: none;
 }
 /* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 @media (min-width: 1200px) {
@@ -893,6 +899,18 @@ footer .footer-info-wrapper .footer-info-list a i {
   }
 }
 @media (max-width: 575.98px) {
+  .go-back {
+    display: block;
+  }
+  .go-back img {
+    margin: 0 5px 0 10px;
+  }
+  .category .card-item {
+    max-width: 47%;
+  }
+  .category .item-image p {
+    margin: 1px !important;
+  }
   .form-inline input {
     width: 200px;
   }

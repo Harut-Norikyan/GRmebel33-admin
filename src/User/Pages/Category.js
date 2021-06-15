@@ -181,7 +181,7 @@ class Category extends Component {
             </div>
             : null
         }
-        <section className="section filter-section">
+        <section className="section filter-section category">
           <div className="container-fluid">
             <div className="row">
               <div className="col-12">
