@@ -15,6 +15,7 @@
 @phone-number-size: 20px;
 @section-title-middle: 18px;
 
+
 body {
   margin: 0;
   padding: 0;
@@ -853,7 +854,6 @@ footer {
 
   p {
     font-size: 18px;
-    margin-top: 10px;
     font-weight: 700;
     letter-spacing: 2px;
   }
@@ -1064,6 +1064,15 @@ footer {
   display: none;
 }
 
+.show-sub-header {
+  .show-more {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    display: none;
+  }
+}
+
 /* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 
 // Extra large devices (large desktops, 1200px and up)
@@ -1243,10 +1252,6 @@ footer {
 
   .go-back {
     display: block;
-
-    img {
-      margin: 0 5px 0 10px;
-    }
   }
 
   .category {
@@ -1320,5 +1325,75 @@ footer {
       }
     }
   }
+
+  .sticky {
+    position: fixed;
+    z-index: 900;
+    top: 0; //added
+    left: 0;
+    width: 100%;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .show-sub-header {
+    #menu-navbar {
+      margin-top: 73px;
+    }
+
+    .top-nav {
+      height: 73px;
+      position: fixed;
+      z-index: 10;
+      top: 0;
+
+      form,
+      .contact-information {
+        opacity: 0;
+      }
+
+      .show-more {
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        display: block !important;
+
+        i {
+          font-size: 15px;
+          color: @white-color;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+
+  .hide-sub-header {
+    #menu-navbar {
+      margin-top: 173px;
+    }
+    .top-nav {
+      height: 173px;
+      position: fixed;
+      z-index: 10;
+      top: 0;
+
+      form,
+      .contact-information {
+        opacity: 1;
+      }
+
+      .show-more {
+        position: absolute;
+        top: 25px;
+        right: 25px;
+
+        i {
+          font-size: 15px;
+          color: @white-color;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+
 
 }

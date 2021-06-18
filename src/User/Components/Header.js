@@ -13,13 +13,38 @@ import leftArrow from "../Images/left-arrow (1).png";
 class Header extends Component {
 
   state = {
-    isShowSubHeader: false,
+    isShowTopSubHeader: false,
+    IsShowSubHeader: false,
     text: "",
+    sticky: ""
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
   }
 
   onChange = (event) => {
     this.setState({ [event.target.name]: event.target.value, isinvalidSubmit: false })
   }
+
+  handleScroll = () => {
+    const { sticky } = this.state;
+    const top = Math.max(document.getElementsByTagName('html')[0].scrollTop, document.body.scrollTop);
+    if (top > 10 && !sticky) {
+      this.setState({
+        sticky: true,
+      });
+    } else if (top <= 10 && sticky) {
+      this.setState({
+        sticky: false,
+      });
+    }
+  };
 
   onSubmit = (event) => {
     event.preventDefault();
@@ -49,12 +74,19 @@ class Header extends Component {
     })
   }
 
+  isShowHideTopSubHeader = () => {
+    const { isShowTopSubHeader } = this.state;
+    this.setState({
+      isShowTopSubHeader: !isShowTopSubHeader
+    })
+  }
+
   goBack = () => {
     window.history.back();
   }
 
   render() {
-    const { isShowSubHeader, isinvalidSubmit, text } = this.state;
+    const { isShowSubHeader, isinvalidSubmit, text, isShowTopSubHeader, sticky } = this.state;
     const { categories, wishListProductsCount } = this.props;
 
     var wishListProductsCountWithStorage = [];
@@ -63,8 +95,19 @@ class Header extends Component {
     }
 
     return (
-      <header>
-        <nav className="navbar navbar-expand-lg navbar-light dark-background justify-content-between d-flex">
+      <header className={`show-sub-header ${!isShowTopSubHeader ? "show-sub-header" : "hide-sub-header"}`}>
+        <nav
+          className={`
+          navbar
+          navbar-expand-lg
+          navbar-light
+          dark-background
+          justify-content-between
+          d-flex
+          top-nav show-subheader 
+          ${sticky ? "sticky" : ""}
+          `}
+        >
           <div className="d-flex align-items-center">
             {
               this.props.location.pathname.includes("category") ||
@@ -81,6 +124,7 @@ class Header extends Component {
               <i className="fas fa-phone-square-alt"></i>
               <a className="header-footer-phone-number" href="tel:+79018888879">+7 901 888 88 79</a>
             </div>
+
             {
               wishListProductsCountWithStorage.length || wishListProductsCount ?
                 <Auxiliary>
@@ -110,6 +154,10 @@ class Header extends Component {
                 : null
             }
           </div>
+
+          <div className="show-more" onClick={this.isShowHideTopSubHeader}>
+            <i className={`fas fa-chevron-down ${!isShowTopSubHeader ? "fa-chevron-down" : "fa-chevron-up"}`}></i>
+          </div>
           <form className="form-inline my-1 d-flex" onSubmit={this.onSubmit}>
             <input
               className={`form-control mx-2 ${isinvalidSubmit && !text ? "error" : ""}`}
@@ -126,7 +174,7 @@ class Header extends Component {
         </nav>
         {
           categories ?
-            <nav id="menu-navbar" className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav id="menu-navbar" className="navbar navbar-expand-lg navbar-light bg-light menu-navbar">
               <div className="container-fluid">
                 <Link to="#">{'\u00A0'}</Link>
                 <button

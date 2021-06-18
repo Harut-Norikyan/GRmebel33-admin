@@ -647,7 +647,6 @@ footer .footer-info-wrapper .footer-info-list a i {
 }
 .loader p {
   font-size: 18px;
-  margin-top: 10px;
   font-weight: 700;
   letter-spacing: 2px;
 }
@@ -814,6 +813,12 @@ footer .footer-info-wrapper .footer-info-list a i {
 .go-back {
   display: none;
 }
+.show-sub-header .show-more {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  display: none;
+}
 /* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 @media (min-width: 1200px) {
   .item-slider-wrapper .item-slider-max-5 {
@@ -902,9 +907,6 @@ footer .footer-info-wrapper .footer-info-list a i {
   .go-back {
     display: block;
   }
-  .go-back img {
-    margin: 0 5px 0 10px;
-  }
   .category .item-image p {
     margin: 1px !important;
     font-size: 13px !important;
@@ -951,5 +953,60 @@ footer .footer-info-wrapper .footer-info-list a i {
   }
   .item-image:hover .product-settings {
     transform: translate(-50%, -30px) !important;
+  }
+  .sticky {
+    position: fixed;
+    z-index: 900;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
+  }
+  .show-sub-header #menu-navbar {
+    margin-top: 73px;
+  }
+  .show-sub-header .top-nav {
+    height: 73px;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+  }
+  .show-sub-header .top-nav form,
+  .show-sub-header .top-nav .contact-information {
+    opacity: 0;
+  }
+  .show-sub-header .top-nav .show-more {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    display: block !important;
+  }
+  .show-sub-header .top-nav .show-more i {
+    font-size: 15px;
+    color: #ffffff;
+    margin-right: 10px;
+  }
+  .hide-sub-header #menu-navbar {
+    margin-top: 173px;
+  }
+  .hide-sub-header .top-nav {
+    height: 173px;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+  }
+  .hide-sub-header .top-nav form,
+  .hide-sub-header .top-nav .contact-information {
+    opacity: 1;
+  }
+  .hide-sub-header .top-nav .show-more {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+  }
+  .hide-sub-header .top-nav .show-more i {
+    font-size: 15px;
+    color: #ffffff;
+    margin-right: 10px;
   }
 }

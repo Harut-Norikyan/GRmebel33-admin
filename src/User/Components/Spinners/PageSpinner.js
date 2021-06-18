@@ -6,7 +6,7 @@ const PageSpinner = props => {
     props.spinners ?
       props.spinners.map(spinner =>
         <div key={spinner} className="loader">
-          <Loader type="Bars" color="#20BF6B" height={120} width={120} />
+          <Loader type="ThreeDots" color="#20BF6B" height={80} width={80} />
           <p>Загрузка...</p>
         </div>
       )

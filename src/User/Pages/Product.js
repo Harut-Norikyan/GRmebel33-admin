@@ -211,7 +211,7 @@ class Product extends Component {
                             <div
                               className="product-slider"
                               style={{ backgroundImage: `url(${`${getImageUrl}/${imagePath}`})` }}
-                              onClick={() => this.enlargephoto(`${`${getImageUrl}/${imagePath}`}`)}
+                              onClick={(event) => this.enlargephoto(event,`${`${getImageUrl}/${imagePath}`}`)}
                             ></div>
                           </div>
                         })
