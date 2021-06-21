@@ -18,7 +18,7 @@ class WishList extends Component {
   state = {
     categoryName: "Избранные",
     productIds: [],
-    showProductsCount: 8,
+    showProductsCount: 6,
     products: [],
     showLargePhoto: false,
     largeImgPath: null
@@ -149,7 +149,7 @@ class WishList extends Component {
                               <div className="product-settings">
                                 <i className="fas fa-search-plus" onClick={(event) => this.enlargephoto(event, `${getImageUrl}/${JSON.parse(product.images)[0]}`)}></i>
                                 <i
-                                  className={`fas fa-heart ${product.isWishlist ? "active-heart" : ""}`}
+                                  className={`fas fa-heart ${product.isWishlist ? "active-heart" : "unactive-heart"}`}
                                   onClick={(event) => this.removeProductFromWishList(event, product._id)}
                                 />
                               </div>
@@ -207,7 +207,7 @@ class WishList extends Component {
                         <button
                           type="button"
                           className="btn btn-primary mx-0 my-3 w-100"
-                          onClick={() => this.setState({ showProductsCount: showProductsCount + 8 })}
+                          onClick={() => this.setState({ showProductsCount: showProductsCount + 6 })}
                         >
                           посмотреть больше
                     </button>

@@ -128,7 +128,6 @@ class Header extends Component {
             {
               wishListProductsCountWithStorage.length || wishListProductsCount ?
                 <Auxiliary>
-                  {/* <span className="heart-line">|</span> */}
                   <Link
                     to={(wishListProductsCountWithStorage.length || wishListProductsCount) ? "/wish-list" : "#"}
                     className="wish-list ml-3"

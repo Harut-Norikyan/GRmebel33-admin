@@ -168,6 +168,10 @@ button[type="reset"] {
   color: #20bf6b !important;
   background-color: #ffffff !important;
 }
+.unactive-heart {
+  color: #ffffff !important;
+  background-color: #20bf6b !important;
+}
 .item-slider {
   overflow-x: hidden;
   width: 100%;
@@ -783,6 +787,7 @@ footer .footer-info-wrapper .footer-info-list a i {
 .partners-block .partner-item {
   display: inline-block;
   width: 160px;
+  height: 230px;
 }
 .partners-block .partner-item .partner-icon {
   display: block;

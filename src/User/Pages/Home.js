@@ -312,7 +312,7 @@ class Home extends Component {
                                   <div className="product-settings">
                                     <i className="fas fa-search-plus" onClick={(event) => this.enlargephoto(event, `${getImageUrl}/${JSON.parse(product.images)[0]}`)}></i>
                                     <i
-                                      className={`fas fa-heart ${product.isWishlist ? "active-heart" : ""}`}
+                                      className={`fas fa-heart ${product.isWishlist ? "active-heart" : "unactive-heart"}`}
                                       onClick={(event) => this.addOrRemoveProductFromWishList(event, product._id)}
                                     />
                                   </div>
@@ -396,7 +396,7 @@ class Home extends Component {
                                   <div className="product-settings">
                                     <i className="fas fa-search-plus" onClick={(event) => this.enlargephoto(event, `${getImageUrl}/${JSON.parse(product.images)[0]}`)}></i>
                                     <i
-                                      className={`fas fa-heart ${product.isWishlist ? "active-heart" : ""}`}
+                                      className={`fas fa-heart ${product.isWishlist ? "active-heart" : "unactive-heart"}`}
                                       onClick={(event) => this.addOrRemoveProductFromWishList(event, product._id)}
                                     />
                                   </div>

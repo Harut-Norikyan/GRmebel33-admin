@@ -31,7 +31,7 @@ class Category extends Component {
     maxValue: 100000,
     step: 100,
     isShowFilter: false,
-    showProductsCount: 4,
+    showProductsCount: 6,
   }
 
   componentDidMount() {
@@ -57,8 +57,8 @@ class Category extends Component {
   }
 
   onAfterRangeChange = event => {
-    const { allProducts } = this.state;
-    const filteredProducts = [];
+    const allProducts = [...this.state.allProducts];
+    var filteredProducts = [];
     allProducts && allProducts.forEach(product => {
       if ((!product.newPrice && product.price >= event[0] && product.price <= event[1]) && event[0] < 100000) {
         filteredProducts.push(product);
@@ -70,6 +70,7 @@ class Category extends Component {
         filteredProducts.push(product);
       }
     })
+    filteredProducts = filteredProducts.length ? filteredProducts.filter((v, i, a) => a.findIndex(t => (t._id === v._id)) === i) : []
     this.setState({ products: filteredProducts, minValue: event[0], maxValue: event[1] });
   }
 
@@ -250,14 +251,13 @@ class Category extends Component {
                             style={{ backgroundImage: `url(${getImageUrl}/${JSON.parse(product.images)[0]})` }}
                             onClick={() => this.redirectToProductPage(product._id)}
                           >
-                            {/* <div className="product-settings"> */}
                             <div className="product-settings">
                               <i
                                 className="fas fa-search-plus"
                                 onClick={(event) => this.enlargephoto(event, `${getImageUrl}/${JSON.parse(product.images)[0]}`)}
                               />
                               <i
-                                className={`fas fa-heart ${product.isWishlist ? "active-heart" : ""}`}
+                                className={`fas fa-heart ${product.isWishlist ? "active-heart" : "unactive-heart"}`}
                                 onClick={(event) => this.addOrRemoveProductFromWishList(event, product._id)}
                               />
                             </div>
@@ -312,10 +312,10 @@ class Category extends Component {
                       <button
                         type="button"
                         className="btn btn-primary mx-0 my-3 w-100"
-                        onClick={() => this.setState({ showProductsCount: showProductsCount + 4 })}
+                        onClick={() => this.setState({ showProductsCount: showProductsCount + 6 })}
                       >
                         посмотреть больше
-                    </button>
+                      </button>
                     </div> : null
                 }
               </div>
