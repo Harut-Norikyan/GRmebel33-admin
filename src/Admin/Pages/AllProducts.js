@@ -30,10 +30,11 @@ class AllProducts extends Component {
     Api.getProducts(currentPage).then(response => {
       this.props.removePageSpinner(spinnerId);
       if (response && response.data) {
+        const productsData = { ...response.data };
         this.setState({
-          products: response.data.products,
-          pageCount: response.data.totalPages,
-          allProductsCount: response.data.allProductsCount
+          products: productsData ? productsData.products : [],
+          pageCount: productsData?.totalPages,
+          allProductsCount: productsData?.allProductsCount
         })
       }
     }).catch(error => this.getFail(error, spinnerId))
@@ -50,8 +51,11 @@ class AllProducts extends Component {
 
   removeProduct = (id, product) => {
     const { products } = this.state;
+    const spinnerId = uuid();
     AlertService.alertConfirm(`Вы действительно хотите удалить ${product.name} ?`, "Да", "Нет").then(() => {
+      this.props.addPageSpinner(spinnerId);
       Api.removeProduct(id, product.images).then(response => {
+        this.props.removePageSpinner(spinnerId);
         if (response) {
           AlertService.alert("success", response.data.message);
           var index = products.findIndex(function (o) {
@@ -60,8 +64,13 @@ class AllProducts extends Component {
           if (index !== -1) products.splice(index, 1);
           this.setState({ products });
         }
-      })
+      }).catch(error => this.getFail(error, spinnerId))
     })
+  }
+
+  getFail = (message, spinnerId) => {
+    message && AlertService.alert(message);
+    spinnerId && this.props.removePageSpinner(spinnerId);
   }
 
   render() {

@@ -44,6 +44,8 @@ class LeftSiteBar extends Component {
         <div className="line" />
         <Link to="/gr-admin/categories">Категории</Link>
         <div className="line" />
+        <Link to="/gr-admin/colors">Цвета</Link>
+        <div className="line" />
         <Link to="/gr-admin/about-us">О нас</Link>
         <div className="line" />
         <button type="button" className="logout-button" onClick={this.logOut}>Выход</button>

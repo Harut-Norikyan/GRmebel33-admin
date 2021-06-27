@@ -103,7 +103,6 @@ class Categories extends Component {
       this.setState({ isinvalidSubmit });
     }
     if (!isinvalidSubmit) {
-      // var images = [image];
       if (!categoryId) {
         Api.addCategory({ categoryName, image }).then(response => {
           const data = { ...response.data };
@@ -142,7 +141,7 @@ class Categories extends Component {
               value={this.state.categoryName}
               onChange={this.onChange}
               placeholder="Название категории"
-              className={` ${isinvalidSubmit && !categoryName ? "error" : ""}`}
+              className={`pl-2 ${isinvalidSubmit && !categoryName ? "error" : ""}`}
             />
             <hr />
             <label htmlFor="categoryName">Фотография для категории<span className="red"> *</span> </label>

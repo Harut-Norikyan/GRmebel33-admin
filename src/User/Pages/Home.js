@@ -350,7 +350,7 @@ class Home extends Component {
                                     }
                                   </div>
                                   <hr className="my-2" />
-                                  <p>{product.description}</p>
+                                  <p title={product.description}>{product.description}</p>
                                   <Link to={`/product/${product._id}`} className="btn btn-primary my-2">Перейти</Link>
                                 </div>
                               </div>
@@ -434,7 +434,7 @@ class Home extends Component {
                                     }
                                   </div>
                                   <hr className="my-2" />
-                                  <p>{product.description}</p>
+                                  <p title={product.description}>{product.description}</p>
                                   <Link to={`/product/${product._id}`} className="btn btn-primary my-2">Перейти</Link>
                                 </div>
                               </div>

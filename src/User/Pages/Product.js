@@ -211,7 +211,7 @@ class Product extends Component {
                             <div
                               className="product-slider"
                               style={{ backgroundImage: `url(${`${getImageUrl}/${imagePath}`})` }}
-                              onClick={(event) => this.enlargephoto(event,`${`${getImageUrl}/${imagePath}`}`)}
+                              onClick={(event) => this.enlargephoto(event, `${`${getImageUrl}/${imagePath}`}`)}
                             ></div>
                           </div>
                         })
@@ -265,6 +265,23 @@ class Product extends Component {
                       </div>
                   }
                   <hr />
+                  {
+                    product.colorsId && product.colorsId.length ?
+                      <Auxiliary>
+                        <div class="addtional-info">
+                          <p class="additional-info-name mb-1">Цвета<span>:</span></p>
+                          <div class="additional-info-value-wrapper d-flex flex-wrap">
+                            {
+                              JSON.parse(product.colorsId).map(color => {
+                                return <span class="additional-info-value-unit">{`${color.label},${'\u00A0'}`}</span>
+                              })
+                            }
+                          </div>
+                        </div>
+                        <hr />
+                      </Auxiliary>
+                      : null
+                  }
                   <p className="product-description five-lines-of-text">{product.description}</p>
                 </div>
               </div>
@@ -339,7 +356,7 @@ class Product extends Component {
                                     }
                                   </div>
                                   <hr className="my-2" />
-                                  <p>{product.description}</p>
+                                  <p title={product.description}>{product.description}</p>
                                   <Link to={`/product/${product._id}`} className="btn btn-primary my-2">Перейти</Link>
                                 </div>
                               </div>

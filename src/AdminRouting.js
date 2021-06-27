@@ -7,6 +7,7 @@ import AllProducts from "./Admin/Pages/AllProducts";
 import Wrapper from './Admin/Components/Wrapper';
 import Login from './Admin/Pages/Login';
 import { Route, Switch } from 'react-router';
+import Colors from './Admin/Pages/Colors';
 
 const AdminRouting = () => {
   return (
@@ -18,6 +19,7 @@ const AdminRouting = () => {
         <Route path='/gr-admin/product' exact component={Product} />
         <Route path='/gr-admin/product/:id' exact component={Product} />
         <Route path='/gr-admin/categories' exact component={Categories} />
+        <Route path='/gr-admin/colors' exact component={Colors} />
         <Route path='/gr-admin/about-us' exact component={AboutUs} />
         <Route path='/gr-admin/all-products' exact component={AllProducts} />
       </Wrapper>

@@ -21,7 +21,8 @@ class Product extends Component {
       discount: false,
       images: [],
       keyWords: '',
-      categoriesId: []
+      categoriesId: [],
+      colorsId: []
     },
     productId: this.props.match.params.id || null,
     categories: [],
@@ -29,6 +30,7 @@ class Product extends Component {
     imagesForDraw: [],
     imagesBlobArray: [],
     isInvalidSubmit: false,
+    colors: [],
   }
 
   componentDidMount() {
@@ -37,6 +39,7 @@ class Product extends Component {
       this.getProductById(productId);
     }
     this.getCategories();
+    this.getColors();
   }
 
   getProductById = (productId) => {
@@ -51,7 +54,8 @@ class Product extends Component {
           imagesForDraw: JSON.parse(product.images) || [],
           form: {
             ...prevState.form,
-            categoriesId: JSON.parse(product.categoriesId) || [],
+            categoriesId: product.categoriesId ? JSON.parse(product.categoriesId) : [],
+            colorsId: product.colorsId ? JSON.parse(product.colorsId) : [],
             description: product.description || "",
             discount: product.discount || false,
             keyWords: product.keyWords ? JSON.parse(product.keyWords).join() : '',
@@ -83,6 +87,24 @@ class Product extends Component {
     }).catch(error => this.getFail(error, spinnerId))
   }
 
+  getColors = () => {
+    const spinnerId = uuid();
+    this.props.addPageSpinner(spinnerId);
+    Api.getColors().then(response => {
+      this.props.removePageSpinner(spinnerId);
+      const colors = [];
+      if (response.data.colors) {
+        response.data.colors.forEach(element => {
+          colors.push({
+            value: element._id,
+            label: element.color
+          })
+        });
+        this.setState({ colors });
+      }
+    }).catch(error => this.getFail(error, spinnerId))
+  }
+
   getFail = (error, spinnerId) => {
     error && AlertService.alert("error", error);
     spinnerId && this.props.removePageSpinner(spinnerId);
@@ -98,16 +120,16 @@ class Product extends Component {
     }))
   }
 
-  selectChange = selectedOption => {
-    const categoriesId = [];
+  selectChange = (selectedOption, array) => {
+    const idsArray = [];
     selectedOption.forEach(elem => {
-      categoriesId.push(elem)
+      idsArray.push(elem)
     });
     this.setState(prevState => ({
       ...prevState,
       form: {
         ...prevState.form,
-        categoriesId
+        [array]: idsArray
       },
     }));
   }
@@ -237,9 +259,11 @@ class Product extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
+    const spinnerId = uuid();
     let { productId, imagesForDraw, isInvalidSubmit } = this.state;
     const form = { ...this.state.form };
     form.categoriesId = form.categoriesId ? JSON.stringify(form.categoriesId) : null;
+    form.colorsId = form.colorsId ? JSON.stringify(form.colorsId) : null;
     form.keyWords = form.keyWords ? JSON.stringify(form.keyWords.split(",")) : null;
     if (!productId) {
       if (
@@ -277,14 +301,18 @@ class Product extends Component {
 
     if (!isInvalidSubmit) {
       if (productId) {
+        this.props.addPageSpinner(spinnerId);
         Api.updateProduct(form, productId).then(response => {
+          this.props.removePageSpinner(spinnerId);
           if (response) {
             AlertService.alert("success", response.data.message);
             this.props.history.push(`/gr-admin/all-products`);
           }
         })
       } else {
+        this.props.addPageSpinner(spinnerId);
         Api.addProduct(form).then(response => {
+          this.props.removePageSpinner(spinnerId);
           if (response) {
             AlertService.alert("success", response.data.message);
             this.props.history.push(`/gr-admin/all-products`);
@@ -295,10 +323,10 @@ class Product extends Component {
   }
 
   render() {
-    const { categories, productId, imagesForDraw, imagesBlobArray, isInvalidSubmit } = this.state;
-    const { name, description, price, discount, minPrice, newPrice, images, categoriesId, keyWords } = this.state.form;
+    const { categories, productId, imagesForDraw, imagesBlobArray, isInvalidSubmit, colors } = this.state;
+    const { name, description, price, discount, minPrice, newPrice, images, categoriesId, keyWords, colorsId } = this.state.form;
     return (
-      categories && categoriesId ? <div className="container">
+      categories && colors ? <div className="container">
         <h2 className="title">{`${!productId ? 'Добавить' : 'Обновить'}`} продукт</h2>
         <form onSubmit={this.onSubmit} className="product-form">
           <label htmlFor="name">Названия<span className="red">*</span></label>
@@ -400,7 +428,7 @@ class Product extends Component {
                               onClick={() => this.makeTheMain(index, imagesForDraw, productId)}
                             >
                               Сделать главным
-                              </button>
+                            </button>
                             : null
                         }
                         <button
@@ -410,7 +438,7 @@ class Product extends Component {
                         >
                           Удалить фото {<br />}
                           из сервера
-                          </button>
+                        </button>
                       </div>
                       <img className="product-img" src={`${getImageUrl}/${path}`} alt="#" />
                     </div>
@@ -437,7 +465,7 @@ class Product extends Component {
           <Select
             closeMenuOnSelect={false}
             isMulti
-            onChange={this.selectChange}
+            onChange={(item) => this.selectChange(item, "categoriesId")}
             options={categories}
             className={`${isInvalidSubmit && !categoriesId.length ? "error" : ""}`}
             value={(() => {
@@ -445,6 +473,29 @@ class Product extends Component {
               categoriesId.forEach(categoryId => {
                 categories.forEach(data => {
                   if (data.label === categoryId.label) {
+                    selectedValues.push(data)
+                  }
+                })
+              })
+              if (selectedValues) {
+                selectedValues.label = selectedValues.label;
+                selectedValues.value = selectedValues.value;
+              }
+              return selectedValues;
+            })()}
+          />
+          <label htmlFor="category">Color</label>
+          <Select
+            closeMenuOnSelect={false}
+            isMulti
+            onChange={(item) => this.selectChange(item, "colorsId")}
+            options={colors}
+            className={`${isInvalidSubmit && !colorsId.length ? "error" : ""}`}
+            value={(() => {
+              var selectedValues = [];
+              colorsId.forEach(courseId => {
+                colors.forEach(data => {
+                  if (data.label === courseId.label) {
                     selectedValues.push(data)
                   }
                 })

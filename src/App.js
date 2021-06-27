@@ -23,6 +23,7 @@ class App extends Component {
     );
   }
 }
+
 const mapStateToProps = state => ({
   pageSpinners: state.spinner.pageSpinners,
 })
