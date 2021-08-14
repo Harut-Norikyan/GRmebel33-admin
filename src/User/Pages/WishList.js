@@ -130,7 +130,7 @@ class WishList extends Component {
                     categoryName ?
                       <div className="section-title">
                         <h1>{categoryName}</h1>
-                        <small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente blanditiis veniam odio debitis ea veritatis quod nulla quisquam labore quo!</small>
+                        {/* <small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente blanditiis veniam odio debitis ea veritatis quod nulla quisquam labore quo!</small> */}
                       </div>
                       : null
                   }
@@ -210,7 +210,7 @@ class WishList extends Component {
                           onClick={() => this.setState({ showProductsCount: showProductsCount + 6 })}
                         >
                           посмотреть больше
-                    </button>
+                        </button>
                       </div> : null
                   }
                 </div>

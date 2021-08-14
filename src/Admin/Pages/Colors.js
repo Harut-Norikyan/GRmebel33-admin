@@ -11,13 +11,15 @@ import AlertService from '../../Services/AlertService';
 function Colors() {
   const dispatch = useDispatch();
 
-  const [color, setColor] = useState("");
+  var [color, setColor] = useState("");
+  var [colorCode, setColorCode] = useState("");
   const [colors, setColors] = useState([]);
   const [colorId, setColorId] = useState(null);
   const [isinvalidSubmit, setIsinvalidSubmit] = useState(false);
 
   const onChange = (event) => {
-    setColor(event.target.value);
+    if (event.target.name === "color") setColor(event.target.value)
+    if (event.target.name === "colorCode") setColorCode(event.target.value)
   }
 
   const getColors = () => {
@@ -40,24 +42,6 @@ function Colors() {
     getColors();
   }, [])
 
-  const onSubmit = (event) => {
-    event.preventDefault();
-    const spinnerId = uuid();
-    if (!color) {
-      setIsinvalidSubmit(true);
-    } else {
-      dispatch(addPageSpinner(spinnerId));
-      (!colorId ? Api.addColor(color) : Api.updateColor(colorId, color)).then(response => {
-        dispatch(removePageSpinner(spinnerId));
-        const data = { ...response.data };
-        data && AlertService.alert("success", data.message);
-        setColor("");
-        setColorId(null);
-        getColors();
-      }).catch(error => getFail(error, spinnerId));
-    }
-  }
-
   const getColorById = (id) => {
     const spinnerId = uuid();
     dispatch(addPageSpinner(spinnerId));
@@ -65,6 +49,7 @@ function Colors() {
       dispatch(removePageSpinner(spinnerId));
       if (response.data?.color) {
         setColor(response.data.color.color);
+        setColorCode(response.data.color.colorCode || "");
         setColorId(response.data.color._id);
       }
     }).catch(error => getFail(error, spinnerId));
@@ -88,6 +73,27 @@ function Colors() {
     })
   }
 
+  const onSubmit = (event) => {
+    event.preventDefault();
+    const spinnerId = uuid();
+    if (!color || !colorCode) {
+      setIsinvalidSubmit(true);
+    } else {
+      color = color.trim();
+      colorCode = colorCode.trim();
+      dispatch(addPageSpinner(spinnerId));
+      (!colorId ? Api.addColor(color, colorCode) : Api.updateColor(colorId, color, colorCode)).then(response => {
+        dispatch(removePageSpinner(spinnerId));
+        const data = { ...response.data };
+        data && AlertService.alert("success", data.message);
+        setColor("");
+        setColorCode("");
+        setColorId(null);
+        getColors();
+      }).catch(error => getFail(error, spinnerId));
+    }
+  }
+
   const getFail = (message, spinnerId) => {
     message && AlertService.alert("error", message);
     spinnerId && dispatch(removePageSpinner(spinnerId));
@@ -98,7 +104,7 @@ function Colors() {
       <h2 className="title">{colorId ? "Обновить цвет" : "Добавить цвет"}</h2>
       <form onSubmit={onSubmit}>
         <div className="add-category-block">
-          <label htmlFor="color">Название цвета <span className="red">*</span> </label>
+          <label htmlFor="color">Название цвета<span className="red">*</span> </label>
           <input
             id="color"
             type="text"
@@ -109,10 +115,21 @@ function Colors() {
             placeholder="Название цвета"
             className={`pl-2 mt-1 mb-3 ${isinvalidSubmit && !color ? "error" : ""}`}
           />
+          <label htmlFor="colorCode">Код цвета (HEX)<span className="red">*</span> </label>
+          <input
+            id="colorCode"
+            type="text"
+            name="colorCode"
+            value={colorCode}
+            autoComplete="off"
+            onChange={onChange}
+            placeholder="Например #2F4F4F"
+            className={`pl-2 mt-1 mb-3 ${isinvalidSubmit && !colorCode ? "error" : ""}`}
+          />
           <div className="category-butttons-block">
             <button type="submit" className="btn btn-outline-primary admin-button">
               {
-                colorId ? "Обновить название цвета" : "Добавить цвет"
+                colorId ? "Обновить цвет" : "Добавить цвет"
               }
             </button>
             {
@@ -141,11 +158,6 @@ function Colors() {
                 colors ? colors.map(color => {
                   return <tr key={color._id}>
                     <td>{color.color}</td>
-                    {/* <td>
-                      {
-                        <img className="td-img" src={`${getImageUrl}/${JSON.parse(category.images)[0]}`} alt="#" />
-                      }
-                    </td> */}
                     <td className="center blue icon" onClick={() => getColorById(color._id)}><MdUpdate /></td>
                     <td className="center red icon" onClick={() => removeColorById(color)}><RiDeleteBin2Fill /></td>
                   </tr>

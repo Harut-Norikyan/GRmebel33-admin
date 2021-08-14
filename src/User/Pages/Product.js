@@ -227,7 +227,7 @@ class Product extends Component {
                     product.newPrice ?
                       <Auxiliary>
                         <div className="price-wrapper d-flex">
-                          <p>Новая цена<span>:</span></p>
+                          <b>Новая цена</b>
                           <div className="new-price">
                             {
                               product.minPrice ? <span>от </span> : null
@@ -236,7 +236,7 @@ class Product extends Component {
                           </div>
                         </div>
                         <div className="price-wrapper d-flex">
-                          <p>Цена<span>:</span></p>
+                          <b>Цена</b>
                           <div className="old-price">
                             {
                               product.minPrice ? <span className="m-0">от </span> : null
@@ -245,7 +245,7 @@ class Product extends Component {
                           </div>
                         </div>
                         <div className="price-wrapper d-flex">
-                          <p>Скидка<span>:</span></p>
+                          <b>Скидка</b>
                           <div className="new-price">
                             <span className="product-discount">{`-${Math.floor(100 - (product.newPrice * 100) / product.price)}%`}</span>
                           </div>
@@ -253,7 +253,7 @@ class Product extends Component {
                       </Auxiliary>
                       :
                       <div className="price-wrapper d-flex">
-                        <p>Цена<span>:</span></p>
+                        <b>Цена</b>
                         <div className="new-price">
                           <span>
                             {
@@ -266,14 +266,19 @@ class Product extends Component {
                   }
                   <hr />
                   {
-                    product.colorsId && product.colorsId.length ?
+                    product.colorsId && JSON.parse(product.colorsId) && JSON.parse(product.colorsId).length ?
                       <Auxiliary>
-                        <div class="addtional-info">
-                          <p class="additional-info-name mb-1">Цвета<span>:</span></p>
-                          <div class="additional-info-value-wrapper d-flex flex-wrap">
+                        <div className="addtional-info">
+                          <b className="additional-info-name mb-1">Цвета</b>
+                          <div className="additional-info-value-wrapper d-flex flex-wrap">
                             {
-                              JSON.parse(product.colorsId).map(color => {
-                                return <span class="additional-info-value-unit">{`${color.label},${'\u00A0'}`}</span>
+                              JSON.parse(product.colorsId).map((color, index) => {
+                                return <div key={index} className="price-wrapper d-flex color-block align-items-center">
+                                  {/* <p>{`${color.label}`}</p> */}
+                                  {
+                                    color.colorCode ? <div className="color-code-bg" style={{ backgroundColor: color.colorCode }} /> : null
+                                  }
+                                </div>
                               })
                             }
                           </div>
@@ -282,7 +287,7 @@ class Product extends Component {
                       </Auxiliary>
                       : null
                   }
-                  <p className="product-description five-lines-of-text">{product.description}</p>
+                  <span><b>Описание </b><p className="product-description five-lines-of-text">{product.description}</p></span>
                 </div>
               </div>
             </div>
@@ -295,7 +300,7 @@ class Product extends Component {
               <div className="col-12">
                 <div className="section-title">
                   <h1>похожие продукты</h1>
-                  <small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente blanditiis veniam odio debitis ea veritatis quod nulla quisquam labore quo!</small>
+                  {/* <small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente blanditiis veniam odio debitis ea veritatis quod nulla quisquam labore quo!</small> */}
                 </div>
               </div>
               <div className="col-12">

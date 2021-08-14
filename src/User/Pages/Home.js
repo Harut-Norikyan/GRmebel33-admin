@@ -245,7 +245,7 @@ class Home extends Component {
               <div className="col-12">
                 <div className="section-title">
                   <h1>категории</h1>
-                  <small className="sub-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente blanditiis veniam odio debitis ea veritatis quod nulla quisquam labore quo!</small>
+                  {/* <small className="sub-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente blanditiis veniam odio debitis ea veritatis quod nulla quisquam labore quo!</small> */}
                 </div>
               </div>
               <div className="col-12">
@@ -289,7 +289,7 @@ class Home extends Component {
               <div className="col-12">
                 <div className="section-title">
                   <h1>ПОСЛЕДНИЕ</h1>
-                  <small className="sub-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente blanditiis veniam odio debitis ea veritatis quod nulla quisquam labore quo!</small>
+                  {/* <small className="sub-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente blanditiis veniam odio debitis ea veritatis quod nulla quisquam labore quo!</small> */}
                 </div>
               </div>
               <div className="col-12">
@@ -373,7 +373,7 @@ class Home extends Component {
               <div className="col-12">
                 <div className="section-title">
                   <h1>АКЦИИ</h1>
-                  <small className="sub-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente blanditiis veniam odio debitis ea veritatis quod nulla quisquam labore quo!</small>
+                  {/* <small className="sub-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente blanditiis veniam odio debitis ea veritatis quod nulla quisquam labore quo!</small> */}
                 </div>
               </div>
               <div className="col-12">
@@ -456,7 +456,7 @@ class Home extends Component {
               <div className="col-12">
                 <div className="section-title">
                   <h1>Купить мебель от производителя</h1>
-                  <small className="sub-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente blanditiis veniam odio debitis ea veritatis quod nulla quisquam labore quo!</small>
+                  {/* <small className="sub-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente blanditiis veniam odio debitis ea veritatis quod nulla quisquam labore quo!</small> */}
                 </div>
               </div>
               <div className="col-12">

@@ -16,7 +16,7 @@ class Search extends Component {
     largeImgPath: null
   }
 
-  enlargephoto = (event,image) => {
+  enlargephoto = (event, image) => {
     event.stopPropagation();
     this.setState({ showLargePhoto: true, largeImgPath: image });
   }
@@ -25,7 +25,7 @@ class Search extends Component {
     this.setState({ showLargePhoto: false, largeImgPath: "" });
   }
 
-  redirectToProductPage = (id) => {
+  redirectToProductPage = (event, id) => {
     this.props.history.push(`/product/${id}`)
   }
 
@@ -130,7 +130,7 @@ class Search extends Component {
                         onClick={() => this.setState({ showProductsCount: showProductsCount + 6 })}
                       >
                         посмотреть больше
-          </button>
+                      </button>
                     </div> : null
                 }
               </div>

@@ -97,7 +97,7 @@ class AllProducts extends Component {
           </thead>
           <tbody>
             {
-              products ? products.map(product => {
+              products && products.length ? products.map(product => {
                 return <tr key={product._id}>
                   <td>{product.name}</td>
                   <td>
@@ -120,7 +120,7 @@ class AllProducts extends Component {
         <Link to="/gr-admin/product">Добавить продукт</Link>
         {
           pageCount ?
-            <div className="pagination-block">
+            <div className="pagination-block mb-5">
               <ReactPaginate
                 previousLabel={"Назад"}
                 nextLabel={"Вперед"}

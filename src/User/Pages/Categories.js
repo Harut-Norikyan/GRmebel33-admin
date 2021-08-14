@@ -30,7 +30,7 @@ class Categories extends Component {
               <div className="col-12">
                 <div className="section-title">
                   <h1>все категории</h1>
-                  <small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente blanditiis veniam odio debitis ea veritatis quod nulla quisquam labore quo!</small>
+                  {/* <small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente blanditiis veniam odio debitis ea veritatis quod nulla quisquam labore quo!</small> */}
                 </div>
               </div>
               <div className="col-12">

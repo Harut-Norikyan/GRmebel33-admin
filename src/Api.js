@@ -3,8 +3,8 @@ import { serialize } from 'object-to-formdata';
 
 // const API_URL = process.env.NODE_ENV === "development" ? 'http://localhost:4000/gr-admin' : 'https://gr-mebel-admin.herokuapp.com/gr-admin';
 // const API_URL = 'http://5.63.152.244:4000/gr-admin';
-const API_URL = "https://gr-mebel-admin.herokuapp.com/gr-admin";
-// const API_URL = "http://localhost:4000/gr-admin";
+// const API_URL = "https://gr-mebel-admin.herokuapp.com/gr-admin";
+const API_URL = "http://localhost:4000/gr-admin";
 const api = axios.create({
   baseURL: API_URL,
 });
@@ -20,7 +20,7 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(response => response, function (error) {
   if (error) {
     localStorage.clear()
-    window.location.href = "/"
+    // window.location.href = "/"
     return Promise.reject(error);
   }
 });
@@ -115,11 +115,11 @@ class Api {
   }
 
   //Color
-  static addColor(color) {
-    return api.post(`/color/add-color`, { color });
+  static addColor(color, colorCode) {
+    return api.post(`/color/add-color`, { color, colorCode });
   }
-  static updateColor(id, color) {
-    return api.post(`/color/update-color/${id}`, { color });
+  static updateColor(id, color, colorCode) {
+    return api.post(`/color/update-color/${id}`, { color, colorCode });
   }
   static getColors() {
     return api.get(`/color/get-colors`);

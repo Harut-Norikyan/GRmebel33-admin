@@ -97,7 +97,8 @@ class Product extends Component {
         response.data.colors.forEach(element => {
           colors.push({
             value: element._id,
-            label: element.color
+            label: element.color,
+            colorCode: element.colorCode
           })
         });
         this.setState({ colors });
@@ -484,7 +485,7 @@ class Product extends Component {
               return selectedValues;
             })()}
           />
-          <label htmlFor="category">Color</label>
+          <label htmlFor="category">Цвета</label>
           <Select
             closeMenuOnSelect={false}
             isMulti
