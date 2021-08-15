@@ -837,6 +837,9 @@ footer .footer-info-wrapper .footer-info-list a i {
   border-radius: 3px;
   margin: 2px;
 }
+.color-code-border {
+  border: 1px solid;
+}
 /* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 @media (min-width: 1200px) {
   .item-slider-wrapper .item-slider-max-5 {

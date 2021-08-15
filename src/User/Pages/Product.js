@@ -276,7 +276,14 @@ class Product extends Component {
                                 return <div key={index} className="price-wrapper d-flex color-block align-items-center">
                                   {/* <p>{`${color.label}`}</p> */}
                                   {
-                                    color.colorCode ? <div className="color-code-bg" style={{ backgroundColor: color.colorCode }} /> : null
+                                    color.colorCode
+                                      ? <div
+                                        className={
+                                          `color-code-bg ${color.label === "белый" ? "color-code-border" : ""}`
+                                        }
+                                        style={{ backgroundColor: color.colorCode }}
+                                      />
+                                      : null
                                   }
                                 </div>
                               })
