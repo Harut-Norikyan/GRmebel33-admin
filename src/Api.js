@@ -2,7 +2,6 @@ import axios from "axios";
 import { serialize } from 'object-to-formdata';
 
 // const API_URL = process.env.NODE_ENV === "development" ? 'http://localhost:4000/gr-admin' : 'https://gr-mebel-admin.herokuapp.com/gr-admin';
-// const API_URL = 'http://5.63.152.244:4000/gr-admin';
 // const API_URL = "https://gr-mebel-admin.herokuapp.com/gr-admin";
 const API_URL = "http://localhost:4000/gr-admin";
 const api = axios.create({
@@ -19,9 +18,13 @@ api.interceptors.request.use((config) => {
 
 api.interceptors.response.use(response => response, function (error) {
   if (error) {
-    localStorage.clear()
-    // window.location.href = "/"
-    return Promise.reject(error);
+    if (JSON.stringify(error).includes("500")) {
+      window.location.href = "/";
+    } else {
+      localStorage.clear();
+      window.location.href = "/";
+      return Promise.reject(error);
+    }
   }
 });
 
