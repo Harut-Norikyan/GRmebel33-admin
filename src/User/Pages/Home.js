@@ -261,7 +261,7 @@ class Home extends Component {
                           onClick={() => this.sendCategoryName(category.categoryName, category._id)}
                         >
                           <div className="card-category">
-                            <div className="card">
+                            <div className="card category-card">
                               <div className="card-image" style={{ backgroundImage: `url(${getImageUrl}/${JSON.parse(category.images)[0]})` }}></div>
                               <div className="card-body">
                                 <h5 className="card-title">{category.categoryName}</h5>

@@ -840,6 +840,10 @@ footer .footer-info-wrapper .footer-info-list a i {
 .color-code-border {
   border: 1px solid;
 }
+.category-card {
+  height: 325px;
+  max-height: 325px;
+}
 /* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 @media (min-width: 1200px) {
   .item-slider-wrapper .item-slider-max-5 {

@@ -274,7 +274,6 @@ class Product extends Component {
                             {
                               JSON.parse(product.colorsId).map((color, index) => {
                                 return <div key={index} className="price-wrapper d-flex color-block align-items-center">
-                                  {/* <p>{`${color.label}`}</p> */}
                                   {
                                     color.colorCode
                                       ? <div
