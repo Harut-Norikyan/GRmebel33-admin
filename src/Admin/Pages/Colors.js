@@ -35,6 +35,7 @@ function Colors() {
 
   const cancelUpdate = () => {
     setColor("");
+    setColorCode("")
     setColorId(null);
   }
 
@@ -151,6 +152,7 @@ function Colors() {
               <thead>
                 <tr>
                   <th>Название цвета</th>
+                  <th>Цвет</th>
                   <th>Обновить</th>
                   <th>Удалить</th>
                 </tr>
@@ -160,6 +162,12 @@ function Colors() {
                   colors ? colors.map(color => {
                     return <tr key={color._id}>
                       <td>{color.color}</td>
+                      <td>
+                        <div
+                          className={`color-code-bg ${color.color === "белый" ? "color-code-border" : ""}`}
+                          style={{ backgroundColor: color.colorCode }}
+                        />
+                      </td>
                       <td className="center blue icon" onClick={() => getColorById(color._id)}><MdUpdate /></td>
                       <td className="center red icon" onClick={() => removeColorById(color)}><RiDeleteBin2Fill /></td>
                     </tr>

@@ -175,7 +175,7 @@ class Categories extends Component {
                 }
                 {
                   imageForDraw && !image ?
-                    <div className='image-block'>
+                    <div className='image-block m-3'>
                       <img className="category-img" src={`${getImageUrl}/${imageForDraw}`} alt="#" />
                     </div>
                     : null
