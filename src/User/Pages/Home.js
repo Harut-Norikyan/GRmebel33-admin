@@ -26,7 +26,6 @@ import shield from "../Images/shield.png";
 import taxFree from "../Images/tax-free.png";
 
 
-
 const TITLE = 'Главная';
 
 class Home extends Component {
@@ -187,8 +186,8 @@ class Home extends Component {
       if (!product.newPrice) productsWithOutDiscount.push(product);
       else { productsWithDiscount.push(product) }
     });
-    if (productsWithOutDiscount) productsWithOutDiscount = [...productsWithOutDiscount].splice(0, 10)
-    if (productsWithDiscount) productsWithDiscount = ([...productsWithDiscount]).reverse().splice(0, 10);
+    if (productsWithOutDiscount) productsWithOutDiscount = [...productsWithOutDiscount].splice(0, 10)?.reverse();
+    if (productsWithDiscount) productsWithDiscount = ([...productsWithDiscount]).reverse().splice(0, 10)?.reverse();
 
     return (
       <Auxiliary>
@@ -203,7 +202,7 @@ class Home extends Component {
             </div>
             : null
         }
-        <NukaCarousel
+        {/* <NukaCarousel
           renderCenterLeftControls={({ previousSlide }) => (
             <span
               className="carousel-control-prev-icon ml-5 arrow"
@@ -237,7 +236,7 @@ class Home extends Component {
               })
               : null
           }
-        </NukaCarousel>
+        </NukaCarousel> */}
         {/* Categories */}
         <section className="section category">
           <div className="container">
