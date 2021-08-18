@@ -157,8 +157,8 @@ class Home extends Component {
       },
       mobile: {
         breakpoint: { max: 725, min: 575 },
-        items: 3,
-        slidesToSlide: 3
+        items: 2,
+        slidesToSlide: 2
       },
       smallMobile: {
         breakpoint: { max: 575, min: 320 },
