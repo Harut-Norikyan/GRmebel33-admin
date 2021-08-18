@@ -60,56 +60,58 @@ class Home extends Component {
     const { products, text, isinvalidSubmit } = this.state;
 
     return (
-      <div className="home-container">
-        <h2 className="title">Искать продукт</h2>
-        <form onSubmit={this.onSubmit}>
-          <div className="d-flex col-6 search-block">
-            <input
-              className={`form-control mb-10 mr-2 ${isinvalidSubmit && !text ? "error" : ""}`}
-              type="text"
-              name="text"
-              value={text}
-              onChange={this.onChange}
-            />
-            <button type="submit" className="admin-button">Искать</button>
-          </div>
-        </form>
-        <div>
-          {
-            products.length ?
-              <table id="customers">
-                <thead>
-                  <tr>
-                    <th>Название продукта</th>
-                    <th>Картинка</th>
-                    <th>Описание продукта</th>
-                    <th>Обновить</th>
-                    <th>Удалить</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {products.map(product => {
-                    return <tr key={product._id}>
-                      <td>{product.name}</td>
-                      <td>
-                        {
-                          <img className="td-img" src={`${getImageUrl}/${JSON.parse(product.images)[0]}`} alt="#"/>
-                        }
-                      </td>
-                      <td><p className="td-desc">{product.description}</p></td>
-                      <td className="center blue icon">
-                        <Link to={`/gr-admin/product/${product._id}`}>
-                          <MdUpdate />
-                        </Link>
-                      </td>
-                      <td className="center red icon" onClick={() => this.removeProduct(product._id, product)}><RiDeleteBin2Fill /></td>
+      <div className="container">
+        <div className="home-containe pr-5">
+          <h2 className="title">Искать продукт</h2>
+          <form onSubmit={this.onSubmit}>
+            <div className="d-flex search-block">
+              <input
+                className={`form-control mb-10 mr-2 ${isinvalidSubmit && !text ? "error" : ""}`}
+                type="text"
+                name="text"
+                value={text}
+                onChange={this.onChange}
+              />
+              <button type="submit" className="admin-button">Искать</button>
+            </div>
+          </form>
+          <div>
+            {
+              products.length ?
+                <table id="customers">
+                  <thead>
+                    <tr>
+                      <th>Название продукта</th>
+                      <th>Картинка</th>
+                      <th>Описание продукта</th>
+                      <th>Обновить</th>
+                      <th>Удалить</th>
                     </tr>
-                  })}
-                </tbody>
-              </table>
-              : null
-          }
+                  </thead>
+                  <tbody>
+                    {products.map(product => {
+                      return <tr key={product._id}>
+                        <td>{product.name}</td>
+                        <td>
+                          {
+                            <img className="td-img" src={`${getImageUrl}/${JSON.parse(product.images)[0]}`} alt="#" />
+                          }
+                        </td>
+                        <td><p className="td-desc">{product.description}</p></td>
+                        <td className="center blue icon">
+                          <Link to={`/gr-admin/product/${product._id}`}>
+                            <MdUpdate />
+                          </Link>
+                        </td>
+                        <td className="center red icon" onClick={() => this.removeProduct(product._id, product)}><RiDeleteBin2Fill /></td>
+                      </tr>
+                    })}
+                  </tbody>
+                </table>
+                : null
+            }
 
+          </div>
         </div>
       </div>
     );

@@ -100,73 +100,76 @@ function Colors() {
   }
 
   return (
-    <div className='content'>
-      <h2 className="title">{colorId ? "Обновить цвет" : "Добавить цвет"}</h2>
-      <form onSubmit={onSubmit}>
-        <div className="add-category-block">
-          <label htmlFor="color">Название цвета<span className="red">*</span> </label>
-          <input
-            id="color"
-            type="text"
-            name="color"
-            value={color}
-            autoComplete="off"
-            onChange={onChange}
-            placeholder="Название цвета"
-            className={`pl-2 mt-1 mb-3 ${isinvalidSubmit && !color ? "error" : ""}`}
-          />
-          <label htmlFor="colorCode">Код цвета (HEX)<span className="red">*</span> </label>
-          <input
-            id="colorCode"
-            type="text"
-            name="colorCode"
-            value={colorCode}
-            autoComplete="off"
-            onChange={onChange}
-            placeholder="Например #2F4F4F"
-            className={`pl-2 mt-1 mb-3 ${isinvalidSubmit && !colorCode ? "error" : ""}`}
-          />
-          <div className="category-butttons-block">
-            <button type="submit" className="btn btn-outline-primary admin-button">
+    <div className="container">
+
+      <div className='content'>
+        <h2 className="title">{colorId ? "Обновить цвет" : "Добавить цвет"}</h2>
+        <form onSubmit={onSubmit}>
+          <div className="add-category-block">
+            <label htmlFor="color">Название цвета<span className="red">*</span> </label>
+            <input
+              id="color"
+              type="text"
+              name="color"
+              value={color}
+              autoComplete="off"
+              onChange={onChange}
+              placeholder="Название цвета"
+              className={`pl-2 mt-1 mb-3 ${isinvalidSubmit && !color ? "error" : ""}`}
+            />
+            <label htmlFor="colorCode">Код цвета (HEX)<span className="red">*</span> </label>
+            <input
+              id="colorCode"
+              type="text"
+              name="colorCode"
+              value={colorCode}
+              autoComplete="off"
+              onChange={onChange}
+              placeholder="Например #2F4F4F"
+              className={`pl-2 mt-1 mb-3 ${isinvalidSubmit && !colorCode ? "error" : ""}`}
+            />
+            <div className="category-butttons-block">
+              <button type="submit" className="btn btn-outline-primary admin-button">
+                {
+                  colorId ? "Обновить цвет" : "Добавить цвет"
+                }
+              </button>
               {
-                colorId ? "Обновить цвет" : "Добавить цвет"
+                colorId ?
+                  <div className="reset" title="Отменить обнавление данного цвета" onClick={cancelUpdate}>
+                    <BiReset />
+                  </div>
+                  : null
               }
-            </button>
-            {
-              colorId ?
-                <div className="reset" title="Отменить обнавление данного цвета" onClick={cancelUpdate}>
-                  <BiReset />
-                </div>
-                : null
-            }
+            </div>
           </div>
-        </div>
-        <hr className="my-2" />
-      </form>
-      {
-        colors.length ?
-          <table id="customers">
-            <thead>
-              <tr>
-                <th>Название цвета</th>
-                <th>Обновить</th>
-                <th>Удалить</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                colors ? colors.map(color => {
-                  return <tr key={color._id}>
-                    <td>{color.color}</td>
-                    <td className="center blue icon" onClick={() => getColorById(color._id)}><MdUpdate /></td>
-                    <td className="center red icon" onClick={() => removeColorById(color)}><RiDeleteBin2Fill /></td>
-                  </tr>
-                }) : null
-              }
-            </tbody>
-          </table>
-          : null
-      }
+          <hr className="my-2" />
+        </form>
+        {
+          colors.length ?
+            <table id="customers">
+              <thead>
+                <tr>
+                  <th>Название цвета</th>
+                  <th>Обновить</th>
+                  <th>Удалить</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  colors ? colors.map(color => {
+                    return <tr key={color._id}>
+                      <td>{color.color}</td>
+                      <td className="center blue icon" onClick={() => getColorById(color._id)}><MdUpdate /></td>
+                      <td className="center red icon" onClick={() => removeColorById(color)}><RiDeleteBin2Fill /></td>
+                    </tr>
+                  }) : null
+                }
+              </tbody>
+            </table>
+            : null
+        }
+      </div>
     </div>
   )
 }

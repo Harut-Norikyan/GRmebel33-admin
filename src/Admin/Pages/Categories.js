@@ -129,116 +129,119 @@ class Categories extends Component {
   render() {
     const { categories, isinvalidSubmit, categoryName, categoryId, pageCount, image, imageForDraw } = this.state;
     return (
-      <div className='content'>
-        <h2 className="title">{categoryId ? "Обновить категорию" : "Добавить категорию"}</h2>
-        <form onSubmit={this.onSubmit}>
-          <div className="add-category-block">
-            <label htmlFor="categoryName">Название категории <span className="red">*</span> </label>
-            <input
-              id="categoryName"
-              type="text"
-              name="categoryName"
-              value={this.state.categoryName}
-              onChange={this.onChange}
-              placeholder="Название категории"
-              className={`pl-2 ${isinvalidSubmit && !categoryName ? "error" : ""}`}
-            />
-            <hr />
-            <label htmlFor="categoryName">Фотография для категории<span className="red"> *</span> </label>
-            <div className="category-upload-block">
-              <div className={`upload-img ${isinvalidSubmit && !image ? "error" : ""}`}>
-                <input type="file" id="upload" hidden name="img" multiple onChange={this.onChangeFile} />
-                <label className="labelForUpload" htmlFor="upload">
-                  <img src={cameraGrey} alt="#" />
-                </label>
-              </div>
-              {
-                image ?
-                  <div className='image-block'>
-                    <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <img className="settings" src={settingsIcon} alt="#" />
-                    </div>
-                    <div className="dropdown-menu dropdown-menu-right">
-                      <button
-                        className="dropdown-item"
-                        type="button"
-                        onClick={this.removePhoto}
-                      >
-                        Удалить фото
-                    </button>
-                    </div>
-                    <img className="category-img" src={URL.createObjectURL(image)} alt="#" />
-                  </div>
-                  : null
-              }
-              {
-                imageForDraw && !image ?
-                  <div className='image-block'>
-                    <img className="category-img" src={`${getImageUrl}/${imageForDraw}`} alt="#" />
-                  </div>
-                  : null
-              }
-            </div>
-            <div className="category-butttons-block">
-              <button type="submit" className="btn btn-outline-primary admin-button">
+      <div className="container">
+
+        <div className="content">
+          <h2 className="title">{categoryId ? "Обновить категорию" : "Добавить категорию"}</h2>
+          <form onSubmit={this.onSubmit}>
+            <div className="add-category-block">
+              <label htmlFor="categoryName">Название категории <span className="red">*</span> </label>
+              <input
+                id="categoryName"
+                type="text"
+                name="categoryName"
+                value={this.state.categoryName}
+                onChange={this.onChange}
+                placeholder="Название категории"
+                className={`pl-2 ${isinvalidSubmit && !categoryName ? "error" : ""}`}
+              />
+              <hr />
+              <label htmlFor="categoryName">Фотография для категории<span className="red"> *</span> </label>
+              <div className="category-upload-block">
+                <div className={`upload-img ${isinvalidSubmit && !image ? "error" : ""}`}>
+                  <input type="file" id="upload" hidden name="img" multiple onChange={this.onChangeFile} />
+                  <label className="labelForUpload" htmlFor="upload">
+                    <img src={cameraGrey} alt="#" />
+                  </label>
+                </div>
                 {
-                  categoryId ? "Обновить категорию" : "Добавить категорию"
+                  image ?
+                    <div className='image-block'>
+                      <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img className="settings" src={settingsIcon} alt="#" />
+                      </div>
+                      <div className="dropdown-menu dropdown-menu-right">
+                        <button
+                          className="dropdown-item"
+                          type="button"
+                          onClick={this.removePhoto}
+                        >
+                          Удалить фото
+                        </button>
+                      </div>
+                      <img className="category-img" src={URL.createObjectURL(image)} alt="#" />
+                    </div>
+                    : null
                 }
-              </button>
-              {
-                categoryId ?
-                  <div className="reset" title="Отменить обнавление данной категории" onClick={this.cancelUpdate}>
-                    <BiReset />
-                  </div>
-                  : null
-              }
+                {
+                  imageForDraw && !image ?
+                    <div className='image-block'>
+                      <img className="category-img" src={`${getImageUrl}/${imageForDraw}`} alt="#" />
+                    </div>
+                    : null
+                }
+              </div>
+              <div className="category-butttons-block">
+                <button type="submit" className="btn btn-outline-primary admin-button">
+                  {
+                    categoryId ? "Обновить категорию" : "Добавить категорию"
+                  }
+                </button>
+                {
+                  categoryId ?
+                    <div className="reset" title="Отменить обнавление данной категории" onClick={this.cancelUpdate}>
+                      <BiReset />
+                    </div>
+                    : null
+                }
+              </div>
             </div>
+            <hr className="my-2" />
+          </form>
+          <table id="customers">
+            <thead>
+              <tr>
+                <th>Название категории</th>
+                <th>Картинка</th>
+                <th>Обновить</th>
+                <th>Удалить</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                categories ? categories.map(category => {
+                  return <tr key={category._id}>
+                    <td>{category.categoryName}</td>
+                    <td>
+                      {
+                        <img className="td-img" src={`${getImageUrl}/${JSON.parse(category.images)[0]}`} alt="#" />
+                      }
+                    </td>
+                    <td className="center blue icon" onClick={() => this.getCategoryById(category._id)}><MdUpdate /></td>
+                    <td className="center red icon" onClick={() => this.removeCategoryById(category)}><RiDeleteBin2Fill /></td>
+                  </tr>
+                }) : null
+              }
+            </tbody>
+          </table>
+          <div className="pagination-block">
+            <ReactPaginate
+              previousLabel={"Назад"}
+              nextLabel={"Вперед"}
+              pageCount={pageCount}
+              onPageChange={this.handlePageClick}
+              breakClassName={'page-item'}
+              breakLinkClassName={'page-link'}
+              containerClassName={'pagination'}
+              pageClassName={'page-item'}
+              pageLinkClassName={'page-link'}
+              previousClassName={'page-item'}
+              previousLinkClassName={'page-link'}
+              nextClassName={'page-item'}
+              nextLinkClassName={'page-link'}
+              activeClassName={'active'}
+            />
           </div>
-          <hr className="my-2" />
-        </form>
-        <table id="customers">
-          <thead>
-            <tr>
-              <th>Название категории</th>
-              <th>Картинка</th>
-              <th>Обновить</th>
-              <th>Удалить</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              categories ? categories.map(category => {
-                return <tr key={category._id}>
-                  <td>{category.categoryName}</td>
-                  <td>
-                    {
-                      <img className="td-img" src={`${getImageUrl}/${JSON.parse(category.images)[0]}`} alt="#" />
-                    }
-                  </td>
-                  <td className="center blue icon" onClick={() => this.getCategoryById(category._id)}><MdUpdate /></td>
-                  <td className="center red icon" onClick={() => this.removeCategoryById(category)}><RiDeleteBin2Fill /></td>
-                </tr>
-              }) : null
-            }
-          </tbody>
-        </table>
-        <div className="pagination-block">
-          <ReactPaginate
-            previousLabel={"Назад"}
-            nextLabel={"Вперед"}
-            pageCount={pageCount}
-            onPageChange={this.handlePageClick}
-            breakClassName={'page-item'}
-            breakLinkClassName={'page-link'}
-            containerClassName={'pagination'}
-            pageClassName={'page-item'}
-            pageLinkClassName={'page-link'}
-            previousClassName={'page-item'}
-            previousLinkClassName={'page-link'}
-            nextClassName={'page-item'}
-            nextLinkClassName={'page-link'}
-            activeClassName={'active'}
-          />
         </div>
       </div>
     );
