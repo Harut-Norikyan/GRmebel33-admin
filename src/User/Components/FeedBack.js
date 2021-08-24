@@ -87,10 +87,16 @@ class FeedBack extends Component {
     return (
       <Auxiliary>
         <div className={isShowFeedBack ? "layer" : ""} onClick={this.showFeedBack} />
-        <div className="bottom-ruler contact-us-button" onClick={this.showFeedBack}><i className="far fa-envelope"></i>
+        <div className="bottom-ruler contact-us-button" onClick={this.showFeedBack}>
+          <i className="fas fa-phone"></i>
           {
             isShowFeedBack ?
-              <form id="contact-us" className="box-shadow" onSubmit={this.onSubmit} onClick={event => event.stopPropagation()}>
+              <form
+                id="contact-us"
+                className="box-shadow"
+                onSubmit={this.onSubmit}
+                onClick={event => event.stopPropagation()}
+              >
                 {
                   receivedAnApplication ?
                     <Auxiliary>
@@ -151,7 +157,7 @@ class FeedBack extends Component {
                           :
                           <button type="submit" className="btn btn-primary">
                             Отправить
-                      </button>
+                          </button>
                       }
                     </Auxiliary>
                 }

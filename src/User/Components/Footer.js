@@ -54,8 +54,9 @@ class Footer extends Component {
                 <div className="footer-info-wrapper mt-2">
                   <ul className="footer-info-list">
                     <p className="footer-block-title">
-                      Присоединяйтесь к нам в социальных сетях
-                  </p>
+                      {/* Присоединяйтесь к нам в социальных сетях */}
+                      Мы в соцсетях
+                    </p>
                     <div className="d-flex">
                       <li>
                         <a href="https://www.facebook.com/grmebel33/" target="_blank" rel="nofollow">
