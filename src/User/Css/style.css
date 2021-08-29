@@ -929,6 +929,9 @@ footer .footer-info-wrapper .footer-info-list a i {
   }
 }
 @media (max-width: 575.98px) {
+  .product-settings {
+    display: flex;
+  }
   .go-back {
     display: block;
   }
