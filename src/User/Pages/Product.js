@@ -162,8 +162,8 @@ class Product extends Component {
       },
       smallMobile: {
         breakpoint: { max: 575, min: 320 },
-        items: 2,
-        slidesToSlide: 2
+        items: 1,
+        slidesToSlide: 1
       },
       verySmallMobile: {
         breakpoint: { max: 320, min: 0 },
