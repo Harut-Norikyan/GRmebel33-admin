@@ -8,6 +8,7 @@ import Wrapper from './Admin/Components/Wrapper';
 import Login from './Admin/Pages/Login';
 import { Route, Switch } from 'react-router';
 import Colors from './Admin/Pages/Colors';
+import ChangePrices from './Admin/Pages/ChangePrices';
 
 const AdminRouting = () => {
   return (
@@ -22,6 +23,7 @@ const AdminRouting = () => {
         <Route path='/gr-admin/colors' exact component={Colors} />
         <Route path='/gr-admin/about-us' exact component={AboutUs} />
         <Route path='/gr-admin/all-products' exact component={AllProducts} />
+        <Route path='/gr-admin/change-prices' exact component={ChangePrices} />
       </Wrapper>
     </Switch>
   );

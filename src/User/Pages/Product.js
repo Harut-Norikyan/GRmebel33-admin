@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import MultiCarousel from "react-multi-carousel";
+import { Helmet } from 'react-helmet';
+import { compose } from 'redux';
 import Api from '../../Api';
 import { connect } from "react-redux";
 import { addPageSpinner, removePageSpinner } from "../../store/actions/spinner";
@@ -11,8 +13,6 @@ import { Link, withRouter } from 'react-router-dom';
 import AlertService from '../../Services/AlertService';
 import WishListSettings from '../../Services/WishListSettings';
 import { addProductToWishList, removeProductFromWishList } from "../../store/actions/products";
-import { Helmet } from 'react-helmet';
-import { compose } from 'redux';
 
 class Product extends Component {
 
@@ -305,7 +305,7 @@ class Product extends Component {
             <div className="row">
               <div className="col-12">
                 <div className="section-title">
-                  <h1>похожие продукты</h1>
+                  <h1>похожие товары</h1>
                   {/* <small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente blanditiis veniam odio debitis ea veritatis quod nulla quisquam labore quo!</small> */}
                 </div>
               </div>

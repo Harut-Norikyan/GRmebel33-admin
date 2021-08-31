@@ -79,18 +79,18 @@ class AllProducts extends Component {
 
     return (
       <div className="container">
-        <h2 className="title">Продукты</h2>
+        <h2 className="title">Товары</h2>
         {
           allProductsCount ?
-            <small className="d-block my-2">Общее количество продуктов <b>{allProductsCount}</b> </small>
+            <small className="d-block my-2">Общее количество товаров <b>{allProductsCount}</b> </small>
             : null
         }
         <table id="customers">
           <thead>
             <tr>
-              <th>Название продукта</th>
+              <th>Название товара</th>
               <th>Картинка</th>
-              <th>Описание продукта</th>
+              <th>Описание товара</th>
               <th>Обновить</th>
               <th>Удалить</th>
             </tr>
@@ -117,7 +117,7 @@ class AllProducts extends Component {
             }
           </tbody>
         </table>
-        <Link to="/gr-admin/product">Добавить продукт</Link>
+        <Link to="/gr-admin/product">Добавить товар</Link>
         {
           pageCount ?
             <div className="pagination-block mb-5">

@@ -445,7 +445,7 @@
   max-height: 350px;
 }
 .three-lines-svg {
-  padding: 20px 15px 15px;
+  padding: 20px 10px;
   box-shadow: 10px 0 10px -10px #000;
   background-color: #4d5c69;
   position: fixed;
@@ -498,6 +498,12 @@ tr {
 }
 .right-site-bar {
   margin-left: 0;
+}
+.change-price-wrapper {
+  width: 100%;
+}
+.change-price-wrapper .change-price-wrapper-item {
+  width: 50%;
 }
 @media (max-width: 992px) {
   .right-site-bar {

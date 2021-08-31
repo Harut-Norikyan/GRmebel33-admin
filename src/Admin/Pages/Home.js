@@ -45,7 +45,7 @@ class Home extends Component {
         if (response?.data?.products?.length) {
           this.setState({ products: response.data.products, text: '' });
         } else {
-          AlertService.alert('warning', "Продукт не найден !!!");
+          AlertService.alert('warning', "Товар не найден !!!");
           this.setState({ text: '' });
         }
       })
@@ -62,7 +62,7 @@ class Home extends Component {
     return (
       <div className="container">
         <div className="home-containe pr-5">
-          <h2 className="title">Искать продукт</h2>
+          <h2 className="title">Искать товар</h2>
           <form onSubmit={this.onSubmit}>
             <div className="d-flex search-block">
               <input
@@ -81,9 +81,9 @@ class Home extends Component {
                 <table id="customers">
                   <thead>
                     <tr>
-                      <th>Название продукта</th>
+                      <th>Название товара</th>
                       <th>Картинка</th>
-                      <th>Описание продукта</th>
+                      <th>Описание товара</th>
                       <th>Обновить</th>
                       <th>Удалить</th>
                     </tr>

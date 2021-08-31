@@ -116,6 +116,9 @@ class Api {
   static getAllProducts() {
     return api.get(`/product/get-all-products`);
   }
+  static changePrices(data) {
+    return api.post(`/product/check-prices`, data);
+  }
 
   //Color
   static addColor(color, colorCode) {

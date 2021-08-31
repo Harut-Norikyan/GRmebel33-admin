@@ -328,7 +328,7 @@ class Product extends Component {
     const { name, description, price, discount, minPrice, newPrice, images, categoriesId, keyWords, colorsId } = this.state.form;
     return (
       categories && colors ? <div className="container">
-        <h2 className="title">{`${!productId ? 'Добавить' : 'Обновить'}`} продукт</h2>
+        <h2 className="title">{`${!productId ? 'Добавить' : 'Обновить'}`} товар</h2>
         <form onSubmit={this.onSubmit} className="product-form">
           <label htmlFor="name">Названия<span className="red">*</span></label>
           <input

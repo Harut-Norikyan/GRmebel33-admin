@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
-import NukaCarousel from 'nuka-carousel';
 import MultiCarousel from "react-multi-carousel";
 import Auxiliary from '../Components/Auxiliary';
 import { connect } from "react-redux";
@@ -202,49 +201,12 @@ class Home extends Component {
             </div>
             : null
         }
-        {/* <NukaCarousel
-          renderCenterLeftControls={({ previousSlide }) => (
-            <span
-              className="carousel-control-prev-icon ml-5 arrow"
-              onClick={event => event.stopPropagation(), previousSlide}
-            />
-          )}
-          renderCenterRightControls={({ nextSlide }) => (
-            <span
-              className="carousel-control-next-icon mr-5 arrow"
-              onClick={event => event.stopPropagation(), nextSlide}
-            />
-          )}
-          defaultControlsConfig={{
-            pagingDotsStyle: {
-              fill: "#ffffff"
-            }
-          }}
-          wrapAround={true}
-        // autoplay={true}
-        >
-          {
-            shuffeledProducts ?
-              shuffeledProducts.map(product => {
-                return <div
-                  key={product._id}
-                  className="first-slider"
-                  style={{ backgroundImage: `url(${getImageUrl}/${JSON.parse(product.images)[0]})` }}
-                  onClick={() => this.redirectToProductPage(product._id)}
-                />
-
-              })
-              : null
-          }
-        </NukaCarousel> */}
-        {/* Categories */}
         <section className="section category">
           <div className="container">
             <div className="row">
               <div className="col-12">
                 <div className="section-title">
                   <h1>категории</h1>
-                  {/* <small className="sub-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente blanditiis veniam odio debitis ea veritatis quod nulla quisquam labore quo!</small> */}
                 </div>
               </div>
               <div className="col-12">
@@ -254,7 +216,6 @@ class Home extends Component {
                       shuffeledCategoties.map(category => {
                         return <Link
                           key={category._id}
-                          // to={`/category/${category._id}`}
                           to="#"
                           className="col-xl-4 col-lg-4 col-md-4 col-12"
                           onClick={() => this.sendCategoryName(category.categoryName, category._id)}
@@ -288,7 +249,6 @@ class Home extends Component {
               <div className="col-12">
                 <div className="section-title">
                   <h1>ПОСЛЕДНИЕ</h1>
-                  {/* <small className="sub-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente blanditiis veniam odio debitis ea veritatis quod nulla quisquam labore quo!</small> */}
                 </div>
               </div>
               <div className="col-12">
@@ -372,7 +332,6 @@ class Home extends Component {
               <div className="col-12">
                 <div className="section-title">
                   <h1>АКЦИИ</h1>
-                  {/* <small className="sub-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente blanditiis veniam odio debitis ea veritatis quod nulla quisquam labore quo!</small> */}
                 </div>
               </div>
               <div className="col-12">
@@ -462,31 +421,25 @@ class Home extends Component {
                 <div className="service-flex">
                   <div className="our-service">
                     <img src={discount} alt="/" />
-                    {/* <Factory /> */}
                     <small>Скидки</small>
                   </div>
                   <div className="our-service">
-                    {/* <CreditCart /> */}
                     <img src={shield} alt="/" />
                     <small>Гарантия качества</small>
                   </div>
                   <div className="our-service">
-                    {/* <FreeDelivery /> */}
                     <img src={delivery} alt="/" />
                     <small>Доставка</small>
                   </div>
                   <div className="our-service">
-                    {/* <PrePayment /> */}
                     <img src={taxFree} alt="/" />
                     <small>Без предоплат</small>
                   </div>
                   <div className="our-service">
-                    {/* <Pencil /> */}
                     <img src={measurer} alt="/" />
                     <small>Выезд замерщика</small>
                   </div>
                   <div className="our-service">
-                    {/* <Support /> */}
                     <img src={feedback} alt="/" />
                     <small>Обратная связь</small>
                   </div>

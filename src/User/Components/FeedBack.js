@@ -109,7 +109,7 @@ class FeedBack extends Component {
                     : <Auxiliary>
                       <h5 className="title">Закажите обратный звонок</h5>
                       <hr />
-                      <small className="d-block mb-4">введите ваше имя и номер телефона и наши специалисты обязательно свяжутся с вами.</small>
+                      <small className="d-block mb-4">Введите ваше имя и номер телефона и наши специалисты обязательно свяжутся с вами.</small>
                       <div className="form-group mb-3">
                         <label htmlFor="phoneNumber">Ваше имя<span className="red">*</span></label>
                         <div className="number-block">

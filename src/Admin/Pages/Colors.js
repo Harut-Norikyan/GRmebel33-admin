@@ -102,7 +102,6 @@ function Colors() {
 
   return (
     <div className="container">
-
       <div className='content'>
         <h2 className="title">{colorId ? "Обновить цвет" : "Добавить цвет"}</h2>
         <form onSubmit={onSubmit}>
