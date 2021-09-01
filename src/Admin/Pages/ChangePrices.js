@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Select from 'react-select';
+import uuid from 'react-uuid';
 import Api from '../../Api';
 import AlertService from '../../Services/AlertService';
+import { addPageSpinner, removePageSpinner } from '../../store/actions/spinner';
 
 const ChangePrices = () => {
+  const dispatch = useDispatch();
 
   const [actionId, setActionId] = useState(1);
   const [percent, setPercent] = useState("");
@@ -27,21 +31,31 @@ const ChangePrices = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
+    const spinnerId = uuid();
     if (!actionId || !percent) {
       setIsInvalidSubmit(true)
     } else {
       AlertService.alertConfirm(
-        `Вы действительно хотите ${actionId === 1 ? "увелечить" : "уменьшить"} цены на товаров на ${percent}% ?`, "Да", "Нет"
+        `Вы действительно хотите ${actionId === 1 ? "увелечить" : "уменьшить"} цены на товары на ${percent}% ?`, "Да", "Нет"
       ).then(() => {
         const data = {
           actionId,
           percent
         }
+        dispatch(addPageSpinner(spinnerId));
         Api.changePrices(data).then(response => {
-          console.log(response);
-        })
+          dispatch(removePageSpinner(spinnerId));
+          if (response) {
+            AlertService.alert("success", response.data.message);
+          }
+        }).catch(error => getFail(error, spinnerId))
       })
     }
+  }
+
+  const getFail = (message, spinnerId) => {
+    message && AlertService.alert(message);
+    spinnerId && this.props.removePageSpinner(spinnerId);
   }
 
   return (
