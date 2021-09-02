@@ -5,7 +5,6 @@ import Api from '../../Api';
 import AlertService from '../../Services/AlertService';
 import { addPageSpinner, removePageSpinner } from "../../store/actions/spinner";
 import Select from 'react-select';
-import ReactPaginate from 'react-paginate';
 import { getImageUrl } from '../..';
 import { Link } from 'react-router-dom';
 import { MdUpdate } from 'react-icons/md';
@@ -86,18 +85,6 @@ class AllProductsByCategory extends Component {
       this.setState({ products })
       console.log(products);
     }
-  }
-
-  onChangePageNumber = (event) => {
-    // console.log(event, "onChangePageNumber");
-    // const { categoryValue } = this.state;
-    // this.setState({ pageNumber: event.selected + 1 }, () => {
-    //   if (categoryValue === 0) {
-
-    //   }
-    // })
-    // console.log(event);
-    this.setState({ pageNumber: event.selected + 1 })
   }
 
   getFail = (error, spinnerId) => {

@@ -65,6 +65,7 @@ class Product extends Component {
             newPrice: product.newPrice || "",
             price: product.price || "",
             minPrice: product.minPrice,
+            isRrunningMeter: product.isRrunningMeter
           }
         }))
       }
