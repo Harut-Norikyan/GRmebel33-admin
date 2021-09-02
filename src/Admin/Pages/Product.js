@@ -8,6 +8,7 @@ import { getImageUrl } from '../..';
 import { connect } from "react-redux";
 import { addPageSpinner, removePageSpinner } from "../../store/actions/spinner";
 import uuid from 'react-uuid';
+import Auxiliary from '../../User/Components/Auxiliary';
 
 class Product extends Component {
 
@@ -22,7 +23,8 @@ class Product extends Component {
       images: [],
       keyWords: '',
       categoriesId: [],
-      colorsId: []
+      colorsId: [],
+      isRrunningMeter: false
     },
     productId: this.props.match.params.id || null,
     categories: [],
@@ -325,7 +327,7 @@ class Product extends Component {
 
   render() {
     const { categories, productId, imagesForDraw, imagesBlobArray, isInvalidSubmit, colors } = this.state;
-    const { name, description, price, discount, minPrice, newPrice, images, categoriesId, keyWords, colorsId } = this.state.form;
+    const { name, description, price, discount, minPrice, newPrice, images, categoriesId, keyWords, colorsId, isRrunningMeter } = this.state.form;
     return (
       categories && colors ? <div className="container">
         <h2 className="title">{`${!productId ? 'Добавить' : 'Обновить'}`} товар</h2>
@@ -371,6 +373,16 @@ class Product extends Component {
             onChange={this.onChange}
             className={` ${isInvalidSubmit && !price ? "error" : ""}`}
           />
+          <label htmlFor="isRrunningMeter">
+            <input
+              id="isRrunningMeter"
+              type="checkbox"
+              name="isRrunningMeter"
+              checked={isRrunningMeter}
+              onChange={this.onCheckboxChange}
+            />
+            <span>Цена за погонный метр</span>
+          </label>
           <label htmlFor="discount">
             <input
               id="discount"
@@ -381,9 +393,10 @@ class Product extends Component {
             />
             <span>Скидка</span>
           </label>
+
           {
             discount ?
-              <>
+              <Auxiliary>
                 <label htmlFor="newPrice">Новая цена</label>
                 <input
                   id="newPrice"
@@ -395,7 +408,8 @@ class Product extends Component {
                   onChange={this.onChange}
                   className={` ${isInvalidSubmit && discount && !newPrice ? "error" : ""}`}
                 />
-              </>
+                <hr className="w-100 my-2" />
+              </Auxiliary>
               : null
           }
           <label htmlFor="">Добавьте фотографии <span className="red">*</span></label>

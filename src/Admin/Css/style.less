@@ -653,6 +653,58 @@ tr {
   }
 }
 
+.admin-bottom-ruler {
+  width: 50px;
+  height: 50px;
+  background-color: @admin-dark-color;
+  position: fixed;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 15px;
+  border-radius: 5px;
+  z-index: 20;
+  box-shadow: 0 0 3px 0 @color-black;
+
+  i {
+    color: @color-white;
+  }
+
+  &:hover {
+    transform: scale(1.008);
+    transition: 0.2s;
+  }
+}
+
+.admin-slide-up-button {
+  right: 15px;
+}
+
+.mini-container {
+  max-width: 800px;
+}
+
+.admin-more-products {
+  background-color: @admin-dark-color;
+  border: none;
+  border-radius: 5px;
+  color: @color-white;
+  box-shadow: 0 0 3px 0 @color-black;
+  transition: 0.2s;
+
+  &:hover {
+    transform: scale(1.005);
+    transition: 0.2s;
+  }
+}
+
+.default-text {
+  color: @color-black;
+  font-size: 14px;
+  font-weight: 500;
+}
+
 @media (max-width: 992px) {
   .right-site-bar {
     width: 100%;

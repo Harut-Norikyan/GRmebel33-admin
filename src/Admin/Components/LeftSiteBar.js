@@ -67,7 +67,9 @@ class LeftSiteBar extends Component {
           <div className="line" />
           <Link to="/gr-admin/product" onClick={() => this.showOrHideLeftMenu(false)}>Добавить товар</Link>
           <div className="line" />
-          <Link to="/gr-admin/all-products" onClick={() => this.showOrHideLeftMenu(false)}>Товары</Link>
+          <Link to="/gr-admin/all-products" onClick={() => this.showOrHideLeftMenu(false)}>Все товары</Link>
+          <div className="line" />
+          <Link to="/gr-admin/all-products-by-category" onClick={() => this.showOrHideLeftMenu(false)}>Товары по категориям</Link>
           <div className="line" />
           <Link to="/gr-admin/categories" onClick={() => this.showOrHideLeftMenu(false)}>Категории</Link>
           <div className="line" />

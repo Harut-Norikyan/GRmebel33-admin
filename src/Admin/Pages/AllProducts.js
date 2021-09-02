@@ -9,14 +9,18 @@ import { getImageUrl } from '../..';
 import { addPageSpinner, removePageSpinner } from "../../store/actions/spinner";
 import uuid from 'react-uuid';
 import { connect } from "react-redux";
+import Select from 'react-select';
 
 class AllProducts extends Component {
 
   state = {
     products: [],
+    defaultProducts: [],
     pageCount: null,
     currentPage: 1,
-    allProductsCount: null
+    allProductsCount: null,
+    categories: [],
+    categoryValue: 0
   }
 
   componentDidMount() {
@@ -33,16 +37,28 @@ class AllProducts extends Component {
         const productsData = { ...response.data };
         this.setState({
           products: productsData ? productsData.products : [],
+          defaultProducts: productsData ? productsData.products : [],
           pageCount: productsData?.totalPages,
           allProductsCount: productsData?.allProductsCount
         })
+        this.getCategories();
       }
     }).catch(error => this.getFail(error, spinnerId))
   }
 
-  getFail = (error, spinnerId) => {
-    error && AlertService.alert("error", error);
-    spinnerId && this.props.removePageSpinner(spinnerId);
+  getCategories = () => {
+    const spinnerId = uuid();
+    this.props.addPageSpinner(spinnerId);
+    Api.getCategories().then(response => {
+      this.props.removePageSpinner(spinnerId);
+      if (response && response.data?.categories) {
+        const categories = [{ label: "Все категории", value: 0 }];
+        response.data?.categories.forEach((category, index) => {
+          categories.push({ label: category.categoryName, value: index + 1 })
+        })
+        this.setState({ categories });
+      }
+    }).catch(error => this.getFail(error, spinnerId))
   }
 
   handlePageClick = (event) => {
@@ -68,18 +84,20 @@ class AllProducts extends Component {
     })
   }
 
-  getFail = (message, spinnerId) => {
-    message && AlertService.alert(message);
+  getFail = (error, spinnerId) => {
+    error && AlertService.alert("error", error);
     spinnerId && this.props.removePageSpinner(spinnerId);
   }
 
   render() {
 
-    const { products, pageCount, allProductsCount } = this.state;
+    const { products, pageCount, allProductsCount, categories, categoryValue } = this.state;
 
     return (
       <div className="container">
-        <h2 className="title">Товары</h2>
+        <div>
+          <h2 className="title">Товары</h2>
+        </div>
         {
           allProductsCount ?
             <small className="d-block my-2">Общее количество товаров <b>{allProductsCount}</b> </small>

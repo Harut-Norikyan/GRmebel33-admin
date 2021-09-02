@@ -505,6 +505,50 @@ tr {
 .change-price-wrapper .change-price-wrapper-item {
   width: 50%;
 }
+.admin-bottom-ruler {
+  width: 50px;
+  height: 50px;
+  background-color: #4d5c69;
+  position: fixed;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 15px;
+  border-radius: 5px;
+  z-index: 20;
+  box-shadow: 0 0 3px 0 #000;
+}
+.admin-bottom-ruler i {
+  color: #FFF;
+}
+.admin-bottom-ruler:hover {
+  transform: scale(1.008);
+  transition: 0.2s;
+}
+.admin-slide-up-button {
+  right: 15px;
+}
+.mini-container {
+  max-width: 800px;
+}
+.admin-more-products {
+  background-color: #4d5c69;
+  border: none;
+  border-radius: 5px;
+  color: #FFF;
+  box-shadow: 0 0 3px 0 #000;
+  transition: 0.2s;
+}
+.admin-more-products:hover {
+  transform: scale(1.005);
+  transition: 0.2s;
+}
+.default-text {
+  color: #000;
+  font-size: 14px;
+  font-weight: 500;
+}
 @media (max-width: 992px) {
   .right-site-bar {
     width: 100%;

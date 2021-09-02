@@ -228,20 +228,26 @@ class Product extends Component {
                       <Auxiliary>
                         <div className="price-wrapper d-flex">
                           <b>Новая цена</b>
-                          <div className="new-price">
+                          <div className="new-price d-flex">
                             {
                               product.minPrice ? <span>от </span> : null
                             }
-                            <span>{`${product.newPrice} руб.`}</span>
+                            <span>{`${'\u00A0'}${product.newPrice} руб.`}</span>
+
                           </div>
                         </div>
+                        {
+                          product.isRrunningMeter ?
+                            <small className="default-text mb-2 mt-0 d-block">(за погонный метр)</small>
+                            : null
+                        }
                         <div className="price-wrapper d-flex">
                           <b>Цена</b>
                           <div className="old-price">
                             {
                               product.minPrice ? <span className="m-0">от </span> : null
                             }
-                            <span>{`${product.price} руб.`}</span>
+                            <span>{` ${product.price} руб.`}</span>
                           </div>
                         </div>
                         <div className="price-wrapper d-flex">
@@ -252,17 +258,24 @@ class Product extends Component {
                         </div>
                       </Auxiliary>
                       :
-                      <div className="price-wrapper d-flex">
-                        <b>Цена</b>
-                        <div className="new-price">
-                          <span>
-                            {
-                              product.minPrice ? <span className="m-0">от </span> : null
-                            }
-                            {`${product.price} руб.`}
-                          </span>
+                      <Auxiliary>
+                        <div className="price-wrapper d-flex">
+                          <b>Цена</b>
+                          <div className="new-price">
+                            <span>
+                              {
+                                product.minPrice ? <span className="m-0">от </span> : null
+                              }
+                              {`${product.price} руб.`}
+                            </span>
+                          </div>
                         </div>
-                      </div>
+                        {
+                          product.isRrunningMeter ?
+                            <small className="default-text mb-2 mt-0 d-block">(за погонный метр)</small>
+                            : null
+                        }
+                      </Auxiliary>
                   }
                   <hr />
                   {

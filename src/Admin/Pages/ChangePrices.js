@@ -46,7 +46,7 @@ const ChangePrices = () => {
         Api.changePrices(data).then(response => {
           dispatch(removePageSpinner(spinnerId));
           if (response) {
-            AlertService.alert("success", response.data.message);
+            AlertService.alert("success", response.data.message)
           }
         }).catch(error => getFail(error, spinnerId))
       })
