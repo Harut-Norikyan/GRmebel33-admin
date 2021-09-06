@@ -9,7 +9,6 @@ import { getImageUrl } from '../..';
 import { addPageSpinner, removePageSpinner } from "../../store/actions/spinner";
 import uuid from 'react-uuid';
 import { connect } from "react-redux";
-import Select from 'react-select';
 
 class AllProducts extends Component {
 
@@ -91,7 +90,7 @@ class AllProducts extends Component {
 
   render() {
 
-    const { products, pageCount, allProductsCount, categories, categoryValue } = this.state;
+    const { products, pageCount, allProductsCount } = this.state;
 
     return (
       <div className="container">
